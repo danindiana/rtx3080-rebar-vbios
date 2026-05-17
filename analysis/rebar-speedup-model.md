@@ -169,16 +169,44 @@ the 3080, the diagnosis is PCIe address space contention. Remedies:
 
 ---
 
-## Summary admonition
+## Cost accounting
+
+ReBAR does not add a new cost category. It extracts more throughput from the
+cost already being paid:
 
 ```
-Measure S on your actual workload.
-Do not borrow S from benchmarks with different models, batch sizes, or GPU configurations.
-
-If S ≈ 1.0 after measurement, the bottleneck was not BAR1.
-
-Verify both GPUs' BAR1 values after reboot — not just the 3080.
+ReBAR delta =
+    same GPUs
+  + same power envelope
+  + same hardware wear
+  + larger BAR1 aperture
+  + fewer pathological transfer bottlenecks
+  = more useful work per unit time
+  = lower cost per useful document
 ```
+
+"Same hardware wear" is the key framing: the inference workload drives hardware
+wear regardless. ReBAR does not increase it — it reduces the fraction of that
+wear spent waiting on BAR remapping rather than doing compute.
+
+---
+
+## Epistemology — what this repo proves
+
+```
+⊢ Firmware claim:    proven by ROM metadata + nvflash --check + subsystem match.
+⊢ BAR1 claim:        proven by nvidia-smi -q post-reboot on both GPUs.
+⊢ Performance claim: proven only by S_measured on worlock's actual workload.
+⊢ Generalization:    not proven. S is not portable across models, batch sizes,
+                     quantization levels, prompt lengths, or GPU configurations.
+```
+
+The fourth line marks where the repo's authority ends. The first three claims
+are defensible and documented here. The performance claim is real but specific
+to one machine, one driver version, one model split, and one workload pattern.
+Anyone arriving at this repo with a different card, a different model, or a
+different inference stack should treat S_worlock as a reference point, not a
+prediction.
 
 ---
 
