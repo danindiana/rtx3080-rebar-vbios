@@ -1,0 +1,78 @@
+digraph cpu_overhead_breakdown {
+    graph [
+        label="CPU-Side Costs Per BAR1 Remap Epoch\nWhy remap count drives overhead, not transfer size"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.6
+        nodesep=0.7
+        ranksep=0.9
+        splines=polyline
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10]
+
+    // Trigger node
+    remap_op [label="One BAR1 remap epoch\n(shift 256 MiB window to next position)"
+              fillcolor="#333366" fontcolor=white shape=diamond]
+
+    // Four CPU-side cost nodes (same rank = side by side)
+    tlb   [label="① TLB Shootdown\n────────────────\nIPI broadcast to all 32 threads\n(Ryzen 9 5950X)\nAll cores must ACK\nbefore remap is safe\nto use"
+           fillcolor="#442200" fontcolor="#ffaa66"]
+
+    wc    [label="② Write-Combining Flush\n────────────────\nSFENCE / MFENCE\nFlushes CPU write-combining\nbuffers for MMIO region\nWaits for PCIe posted write\nto drain to root complex"
+           fillcolor="#442200" fontcolor="#ffaa66"]
+
+    lock  [label="③ Driver Remap Lock\n────────────────\nNVIDIA driver serializes\nBAR remap ops globally\nConcurrent CPU threads\n(e.g. feeding RTX 5080 and\nRTX 3080 simultaneously)\nmust queue behind this lock"
+           fillcolor="#442200" fontcolor="#ffaa66"]
+
+    fence [label="④ Completion Fence\n────────────────\nFor CPU-visible operations:\nread-back or fence required\nper 256 MiB chunk to confirm\ndata arrived before launching\nthe next kernel or transfer"
+           fillcolor="#442200" fontcolor="#ffaa66"]
+
+    { rank=same; tlb; wc; lock; fence }
+
+    remap_op -> tlb   [color="#ff8800" fontcolor="#ff8800"]
+    remap_op -> wc    [color="#ff8800" fontcolor="#ff8800"]
+    remap_op -> lock  [color="#ff8800" fontcolor="#ff8800"]
+    remap_op -> fence [color="#ff8800" fontcolor="#ff8800"]
+
+    // Per-epoch cost summary
+    per_epoch [label="Per-epoch cost:\n4 synchronization events\n+ ~1–4 µs PCIe config latency\n(serializing — not pipelinable)"
+               fillcolor="#333333" fontcolor=white shape=box]
+
+    tlb   -> per_epoch [color="#ff8800" style=dashed]
+    wc    -> per_epoch [color="#ff8800" style=dashed]
+    lock  -> per_epoch [color="#ff8800" style=dashed]
+    fence -> per_epoch [color="#ff8800" style=dashed]
+
+    // Scale factors
+    scale_b [label="× 35 epochs\n(256 MiB BAR1, 8778 MiB working set)"
+             fillcolor="#550000" fontcolor="#ff4444" shape=ellipse]
+    scale_a [label="× 2 epochs\n(8192 MiB BAR1, 8778 MiB working set)"
+             fillcolor="#003300" fontcolor="#44ff88" shape=ellipse]
+
+    { rank=same; scale_b; scale_a }
+    per_epoch -> scale_b [color="#ff4444" fontcolor="#ff4444" label="256 MiB path"]
+    per_epoch -> scale_a [color="#44ff88" fontcolor="#44ff88" label="8192 MiB path"]
+
+    // Results
+    result_b [label="HIGH coordination overhead\n──────────────────────────\n35 TLB shootdowns (×32 IPIs each)\n35 write-combining flushes\n35 driver lock acquisitions\n35 completion fences\n≥ 140 µs serialized latency\n(before scale-with-load effects)\nBottleneck: remap latency"
+              fillcolor="#440000" fontcolor="#ff8866" shape=box3d]
+
+    result_a [label="LOW coordination overhead\n──────────────────────────\n2 TLB shootdowns\n2 write-combining flushes\n2 driver lock acquisitions\n2 completion fences\n≈ 8 µs serialized latency\nBottleneck: PCIe bandwidth"
+              fillcolor="#003300" fontcolor="#66ff88" shape=box3d]
+
+    { rank=same; result_b; result_a }
+    scale_b -> result_b [color="#ff4444"]
+    scale_a -> result_a [color="#44ff88"]
+
+    // Footer annotation
+    note [label="KEY POINT\n─────────────────────────────────────────\nThe same bytes are transferred either way.\nPCIe bandwidth is unchanged by ReBAR.\nThe overhead is in CPU/driver coordination,\nnot in the copy itself.\n─────────────────────────────────────────\nReBAR reduces the number of epochs.\nFewer epochs = fewer sync events = less latency.\nTransfer becomes bandwidth-limited, not latency-limited."
+          fillcolor="#111122" fontcolor="#aaaacc" shape=note style=filled]
+
+    result_b -> note [style=invis]
+    result_a -> note [style=invis]
+}

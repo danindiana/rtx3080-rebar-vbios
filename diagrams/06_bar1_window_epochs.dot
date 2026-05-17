@@ -1,0 +1,66 @@
+digraph bar1_window_epochs {
+    graph [
+        label="BAR1 Aperture Window Epochs\n256 MiB vs 8192 MiB — RTX 3080 (10 GB VRAM, 8778 MiB observed working set)"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.6
+        nodesep=1.2
+        ranksep=0.8
+        splines=polyline
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10]
+
+    // Column headers
+    hdr_b [label="BEFORE REBAR  |  BAR1 = 256 MiB" fillcolor="#441100" fontcolor="#ff6600" shape=box]
+    hdr_a [label="AFTER REBAR   |  BAR1 = 8192 MiB" fillcolor="#002211" fontcolor="#00cc66" shape=box]
+    { rank=same; hdr_b; hdr_a }
+
+    // === Before (256 MiB) path ===
+    cpu_b [label="CPU\nAMD Ryzen 9 5950X" shape=ellipse fillcolor="#1a3a5a" fontcolor=white]
+
+    bar_b [label="BAR1 Aperture\n256 MiB\n(active mapping window)" fillcolor="#553300" fontcolor="#ffcc66"]
+
+    epochs_b [label="Epoch  1 / 35:    0 MiB –  256 MiB\nEpoch  2 / 35:  256 MiB –  512 MiB\nEpoch  3 / 35:  512 MiB –  768 MiB\n...\nEpoch 34 / 35: 8448 MiB – 8704 MiB\nEpoch 35 / 35: 8704 MiB – 8778 MiB (tail)\n──────────────────────────────────────\nEach epoch:\n  write BAR base addr  (PCIe config write)\n  wait for remap flush (~1–4 µs, serializing)\n  transfer 256 MiB chunk\n  repeat"
+               fillcolor="#331100" fontcolor="#ffaa66" shape=note]
+
+    vram_b [label="VRAM: 10,240 MiB total\n8778 MiB working set loaded\n35 aperture epochs required"
+            fillcolor="#442200" fontcolor="#ffcc88" shape=cylinder]
+
+    // === After (8192 MiB) path ===
+    cpu_a [label="CPU\nAMD Ryzen 9 5950X" shape=ellipse fillcolor="#1a3a5a" fontcolor=white]
+
+    bar_a [label="BAR1 Aperture\n8192 MiB\n(active mapping window)" fillcolor="#224400" fontcolor="#88ff88"]
+
+    epochs_a [label="Epoch 1 / 2:    0 MiB – 8192 MiB  (32× 256 MiB in one pass)\nEpoch 2 / 2: 8192 MiB – 8778 MiB  (586 MiB tail)\n──────────────────────────────────────\nNearly all VRAM is CPU-addressable\nwithout any remap.\n\nTransfer becomes PCIe-bandwidth-limited,\nnot remap-latency-limited.\n\n17× fewer aperture remaps vs 256 MiB BAR1\n20× fewer for full 10 GiB card"
+               fillcolor="#112200" fontcolor="#88ff88" shape=note]
+
+    vram_a [label="VRAM: 10,240 MiB total\n8778 MiB working set loaded\n2 aperture epochs required"
+            fillcolor="#224400" fontcolor="#aaffaa" shape=cylinder]
+
+    // Flows
+    hdr_b -> cpu_b   [style=invis]
+    hdr_a -> cpu_a   [style=invis]
+
+    cpu_b -> bar_b   [label="MMIO write" color="#ff6600" fontcolor="#ff6600"]
+    bar_b -> epochs_b [label="slides ×35\nthrough VRAM" color="#ff6600" fontcolor="#ff6600"]
+    epochs_b -> vram_b [label="populates VRAM" color="#ff6600" fontcolor="#ff6600" style=dashed]
+
+    cpu_a -> bar_a   [label="MMIO write" color="#00cc66" fontcolor="#00cc66"]
+    bar_a -> epochs_a [label="covers ≈80%\nin one pass" color="#00cc66" fontcolor="#00cc66"]
+    epochs_a -> vram_a [label="populates VRAM" color="#00cc66" fontcolor="#00cc66" style=dashed]
+
+    // Align at same ranks
+    { rank=same; cpu_b;    cpu_a    }
+    { rank=same; bar_b;    bar_a    }
+    { rank=same; epochs_b; epochs_a }
+    { rank=same; vram_b;   vram_a   }
+
+    // Invisible separator
+    hdr_b -> hdr_a [style=invis]
+    cpu_b -> cpu_a [style=invis]
+}

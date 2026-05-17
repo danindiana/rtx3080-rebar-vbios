@@ -19,6 +19,7 @@
 - [Diagrams](#diagrams)
 - [File Inventory](#file-inventory)
 - [Analysis: ReBAR Speedup Model](analysis/rebar-speedup-model.md)
+- [Analysis: BAR1 Mechanics](analysis/bar1-mechanics.md)
 
 ---
 
@@ -486,6 +487,30 @@ are wrong targets, why AS02 is preferred over AS03, and the history of how the i
 interactive flash landed on AS03 instead.
 
 [![ROM Selection](diagrams/05_rom_selection.png)](diagrams/05_rom_selection.svg)
+
+### 06 — BAR1 Window Epochs
+
+Side-by-side comparison of 256 MiB vs 8192 MiB BAR1: how many aperture windows
+the driver must cycle through to cover the full VRAM working set. 35 epochs for
+the observed 8778 MiB working set under 256 MiB BAR1; 2 epochs under 8192 MiB BAR1.
+
+[![BAR1 Window Epochs](diagrams/06_bar1_window_epochs.png)](diagrams/06_bar1_window_epochs.svg)
+
+### 07 — Remap Cycle Flow
+
+The serialized remap-flush-transfer sequence that runs 35× under 256 MiB BAR1,
+annotating the PCIe configuration cycle that cannot be pipelined with the data
+transfer. Compared against the map-once path under 8192 MiB BAR1.
+
+[![Remap Cycle Flow](diagrams/07_remap_cycle_flow.png)](diagrams/07_remap_cycle_flow.svg)
+
+### 08 — CPU Overhead Breakdown
+
+The four CPU-side cost components fired on every remap epoch: TLB shootdown,
+write-combining flush, driver remap lock, and completion fence. Shows how these
+multiply by ×35 under 256 MiB BAR1 and collapse to ×2 under 8192 MiB BAR1.
+
+[![CPU Overhead Breakdown](diagrams/08_cpu_overhead_breakdown.png)](diagrams/08_cpu_overhead_breakdown.svg)
 
 ---
 

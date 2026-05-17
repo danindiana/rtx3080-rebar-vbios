@@ -214,4 +214,8 @@ prediction.
 
 - [`../README.md`](../README.md) — Flash procedure, ROM selection invariant, post-reboot verification
 - [`../LESSONS_LEARNED.md`](../LESSONS_LEARNED.md) — Full project narrative and failure analysis
+- [`bar1-mechanics.md`](bar1-mechanics.md) — Microarchitectural explanation: remap cycles, TLB pressure, the 35-vs-2 epoch reduction
 - [`../diagrams/02_rebar_architecture.svg`](../diagrams/02_rebar_architecture.svg) — BAR1 architecture diagram
+- [`../diagrams/06_bar1_window_epochs.svg`](../diagrams/06_bar1_window_epochs.svg) — 35 vs 2 aperture window epochs
+- [`../diagrams/07_remap_cycle_flow.svg`](../diagrams/07_remap_cycle_flow.svg) — serialized remap cycle vs map-once path
+- [`../diagrams/08_cpu_overhead_breakdown.svg`](../diagrams/08_cpu_overhead_breakdown.svg) — CPU cost components per epoch

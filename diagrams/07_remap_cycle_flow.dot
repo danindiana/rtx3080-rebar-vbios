@@ -1,0 +1,86 @@
+digraph remap_cycle_flow {
+    graph [
+        label="BAR1 Remap Cycle — Serialized Transfer Pattern\n256 MiB BAR1 (Before) vs 8192 MiB BAR1 (After)"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.6
+        nodesep=1.2
+        ranksep=0.7
+        splines=polyline
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10]
+
+    // Column headers
+    hdr_b [label="BEFORE  |  256 MiB BAR1" fillcolor="#441100" fontcolor="#ff6600"]
+    hdr_a [label="AFTER   |  8192 MiB BAR1" fillcolor="#002211" fontcolor="#00cc66"]
+    { rank=same; hdr_b; hdr_a }
+
+    // === Before: serialized remap loop ===
+    start_b [label="Transfer 8778 MiB to RTX 3080 VRAM"
+             fillcolor="#1a3a5a" fontcolor=white shape=oval]
+
+    remap_b [label="① Write new BAR base address\n   (PCIe configuration write)\n   → repositions 256 MiB window"
+             fillcolor="#442200" fontcolor="#ffaa66"]
+
+    flush_b [label="② Wait for remap flush\n   PCIe config cycle must COMPLETE\n   before new addresses are valid\n   ~1–4 µs irreducible latency\n   ─────────────────────────\n   SERIALIZING — cannot pipeline\n   with the data transfer"
+             fillcolor="#660000" fontcolor="#ff4444" shape=box]
+
+    xfer_b  [label="③ Transfer 256 MiB chunk\n   (DMA or CPU writes through BAR1)"
+             fillcolor="#442200" fontcolor="#ffaa66"]
+
+    more_b  [label="More VRAM remaining?" fillcolor="#332200" fontcolor="#ffcc88" shape=diamond]
+
+    done_b  [label="DONE  (35 remap cycles)\n────────────────────────\nMin. remap latency: 35 × 4 µs = 140 µs\n(before TLB + lock + fence costs)\nTransfer is remap-latency-limited"
+             fillcolor="#550000" fontcolor="#ff8844" shape=oval]
+
+    hdr_b   -> start_b  [style=invis]
+    start_b -> remap_b  [label="epoch 1" color="#ff6600" fontcolor="#ff6600"]
+    remap_b -> flush_b  [color="#ff6600"]
+    flush_b -> xfer_b   [label="remap confirmed" color="#ff6600" fontcolor="#ff6600"]
+    xfer_b  -> more_b   [color="#ff6600"]
+    more_b  -> remap_b  [label="YES  (×35 total)" color="#ff8800" fontcolor="#ff8800"]
+    more_b  -> done_b   [label="NO" color="#ff6600" fontcolor="#ff6600"]
+
+    // === After: map-once path ===
+    start_a [label="Transfer 8778 MiB to RTX 3080 VRAM"
+             fillcolor="#1a3a5a" fontcolor=white shape=oval]
+
+    map_a   [label="① Map VRAM at allocation time\n   Single mapping covers 8192 MiB\n   (≈ 80% of card in one shot)"
+             fillcolor="#224400" fontcolor="#88ff88"]
+
+    xfer_a  [label="② Transfer data\n   No remap needed for main body\n   PCIe DMA runs at link bandwidth"
+             fillcolor="#224400" fontcolor="#aaffaa"]
+
+    tail_a  [label="Tail remaining?\n(8778 – 8192 = 586 MiB)" fillcolor="#112200" fontcolor="#88ffaa" shape=diamond]
+
+    xfer_t  [label="③ Map + transfer 586 MiB tail\n   One additional mapping epoch"
+             fillcolor="#1a3300" fontcolor="#88ffaa"]
+
+    done_a  [label="DONE  (2 mapping epochs)\n────────────────────────\nMin. remap latency: 2 × 4 µs = 8 µs\nTransfer is PCIe-bandwidth-limited\nnot remap-latency-limited"
+             fillcolor="#003300" fontcolor="#66ff88" shape=oval]
+
+    hdr_a   -> start_a  [style=invis]
+    start_a -> map_a    [color="#00cc66"]
+    map_a   -> xfer_a   [label="maps 8192 MiB" color="#00cc66" fontcolor="#00cc66"]
+    xfer_a  -> tail_a   [color="#00cc66"]
+    tail_a  -> xfer_t   [label="YES" color="#00cc66" fontcolor="#00cc66"]
+    tail_a  -> done_a   [label="NO" color="#00cc66" fontcolor="#00cc66" style=dashed]
+    xfer_t  -> done_a   [color="#00cc66"]
+
+    // Align rows
+    { rank=same; start_b; start_a }
+    { rank=same; remap_b; map_a   }
+    { rank=same; flush_b; xfer_a  }
+    { rank=same; xfer_b;  tail_a  }
+    { rank=same; more_b;  xfer_t  }
+    { rank=same; done_b;  done_a  }
+
+    // Invisible separator
+    hdr_b   -> hdr_a   [style=invis]
+    start_b -> start_a [style=invis]
+}
