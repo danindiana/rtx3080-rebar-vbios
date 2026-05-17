@@ -1,806 +1,14 @@
 
 ========================================================
-  RTX 3080 ReBAR Enable — Sun May 17 09:56:10 AM CDT 2026
-========================================================
-[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-ERROR: NVIDIA modules still loaded — aborting
-
-========================================================
-  RTX 3080 ReBAR Enable — Sun May 17 10:10:35 AM CDT 2026
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    nvidia-persistenced: stopped
-    Killing remaining GPU processes...
-  2391  2704  7304  2391  2704  7304  2391  2704  7304  2391  7304  2704[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-ERROR: NVIDIA modules still loaded — aborting
-  Processes still holding GPU devices:
-  9509  9510  9509  9510  9509  9510  9509  9510COMMAND    PID                USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
-nvidia-pe 9509 nvidia-persistenced    4u   CHR 195,255      0t0 1167 /dev/nvidiactl
-nvidia-pe 9509 nvidia-persistenced    5u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 9509 nvidia-persistenced    6u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 9509 nvidia-persistenced    7u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 9509 nvidia-persistenced    8u   CHR 195,254      0t0 1172 /dev/nvidia-modeset
-nvidia-pe 9509 nvidia-persistenced    9u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 9509 nvidia-persistenced   10u   CHR   195,1      0t0 1169 /dev/nvidia1
-nvidia-pe 9509 nvidia-persistenced   11u   CHR   195,1      0t0 1169 /dev/nvidia1
-nvidia-pe 9509 nvidia-persistenced   12u   CHR   195,1      0t0 1169 /dev/nvidia1
-nvidia-pe 9509 nvidia-persistenced   13u   CHR 195,254      0t0 1172 /dev/nvidia-modeset
-nvidia-pe 9509 nvidia-persistenced   14u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3   9510                root  mem    CHR 195,255          1167 /dev/nvidiactl
-python3   9510                root    9u   CHR 195,255      0t0 1167 /dev/nvidiactl
-python3   9510                root   10u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3   9510                root   11u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3   9510                root   12u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3   9510                root   15u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3   9510                root   16u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3   9510                root   17u   CHR   195,0      0t0 1168 /dev/nvidia0
-
-========================================================
-  RTX 3080 ReBAR Enable — Sun May 17 10:19:51 AM CDT 2026
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    nvidia-persistenced: stopped
-    Killing remaining GPU processes...
-  9510  9621 10483  9510  9621 10483  9510  9621 10483  9621 10483  9510[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-ERROR: NVIDIA modules still loaded — aborting
-  Processes still holding GPU devices:
- 12511 12512 12511 12512 12511 12512 12511 12512COMMAND     PID                USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
-nvidia-pe 12511 nvidia-persistenced    4u   CHR 195,255      0t0 1167 /dev/nvidiactl
-nvidia-pe 12511 nvidia-persistenced    5u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 12511 nvidia-persistenced    6u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 12511 nvidia-persistenced    7u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 12511 nvidia-persistenced    8u   CHR 195,254      0t0 1172 /dev/nvidia-modeset
-nvidia-pe 12511 nvidia-persistenced    9u   CHR   195,0      0t0 1168 /dev/nvidia0
-nvidia-pe 12511 nvidia-persistenced   10u   CHR   195,1      0t0 1169 /dev/nvidia1
-nvidia-pe 12511 nvidia-persistenced   11u   CHR   195,1      0t0 1169 /dev/nvidia1
-nvidia-pe 12511 nvidia-persistenced   12u   CHR   195,1      0t0 1169 /dev/nvidia1
-nvidia-pe 12511 nvidia-persistenced   13u   CHR 195,254      0t0 1172 /dev/nvidia-modeset
-nvidia-pe 12511 nvidia-persistenced   14u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3   12512                root  mem    CHR 195,255          1167 /dev/nvidiactl
-python3   12512                root    9u   CHR 195,255      0t0 1167 /dev/nvidiactl
-python3   12512                root   10u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3   12512                root   11u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3   12512                root   12u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3   12512                root   15u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3   12512                root   16u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3   12512                root   17u   CHR   195,0      0t0 1168 /dev/nvidia0
-
-========================================================
-  RTX 3080 ReBAR Enable — Sun May 17 10:24:05 AM CDT 2026
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    gpu-watchdog: not found/not running
-    nvidia-persistenced: masked+stopped
-    Killing remaining GPU processes...
- 12512 12711 13838 12512 12711 13838 12512 12711 13838 12711 13838 12512[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-ERROR: NVIDIA modules still loaded — aborting
-  Processes still holding GPU devices:
- 15109 15109 15109 15109COMMAND   PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
-python3 15109 root  mem    CHR 195,255          1167 /dev/nvidiactl
-python3 15109 root    9u   CHR 195,255      0t0 1167 /dev/nvidiactl
-python3 15109 root   10u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3 15109 root   11u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3 15109 root   12u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3 15109 root   15u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3 15109 root   16u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3 15109 root   17u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3 15109 root   18u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3 15109 root   19u   CHR   195,1      0t0 1169 /dev/nvidia1
-
-========================================================
-  RTX 3080 ReBAR Enable — Sun May 17 10:27:29 AM CDT 2026
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    gpu-watchdog: killed PID 15109, masked
-    nvidia-persistenced: masked+stopped
-    Killing remaining GPU processes...
- 15280 15958 15280 15958 15280 15958 15280 15958    All GPU handles released
-[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-ERROR: NVIDIA modules still loaded — aborting
-  Processes still holding GPU devices:
- 17119 17119 17119 17119COMMAND   PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
-python3 17119 root  mem    CHR 195,255          1167 /dev/nvidiactl
-python3 17119 root    9u   CHR 195,255      0t0 1167 /dev/nvidiactl
-python3 17119 root   10u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3 17119 root   11u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3 17119 root   12u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3 17119 root   15u   CHR   234,0      0t0 1170 /dev/nvidia-uvm
-python3 17119 root   16u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3 17119 root   17u   CHR   195,0      0t0 1168 /dev/nvidia0
-python3 17119 root   18u   CHR   195,1      0t0 1169 /dev/nvidia1
-python3 17119 root   19u   CHR   195,1      0t0 1169 /dev/nvidia1
-
-========================================================
-  RTX 3080 ReBAR Enable — Sun May 17 10:30:37 AM CDT 2026
+  RTX 3080 ReBAR Flash — Sun May 17 11:41:05 AM CDT 2026
+  ROM: /home/jeb/vbios-work/v6-extracted/94.02.42.40.AS02.rom
 ========================================================
 [0] Stopping GPU consumers...
     Ollama: stopped
     gpu-watchdog: stopped (state=inactive)
     nvidia-persistenced: masked+stopped
     Killing remaining GPU processes...
- 17265 17933 17265 17933 17265 17933 17265 17933    All GPU handles released
-[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-    Modules unloaded OK
-[3] Verifying GPU is visible (nvflash --list)...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-NVIDIA display adapters present in system:
-<0> Graphics Device      (10DE,2C02,1458,4177) S:00,B:0E,D:00,F:00
-<1> GeForce RTX 3080     (10DE,2206,1043,87B0) S:00,B:0F,D:00,F:00
-[4] Backing up current VBIOS (GPU 1)...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          Build GUID            : 36762E5D66904B30A099C58D53966BF5
-Build Number          : 29236791
-IFR Subsystem ID      : 1043-87B0
-Subsystem Vendor ID   : 0x1043
-Subsystem ID          : 0x87B0
-Version               : 94.02.42.40.66
-Image Hash            : N/A
-Hierarchy ID          : Normal Board
-Build Date            : 10/23/20
-Modification Date     : 11/26/20
-UEFI Version          : 0x60009 ( x64 )
-UEFI Variant ID       : 0x000000000000000A ( GA1xx )
-UEFI Signer(s)        : Microsoft Corporation UEFI CA 2011
-XUSB-FW Version ID    : N/A
-XUSB-FW Build Time    : N/A
-InfoROM Version       : G001.0000.03.03
-InfoROM Backup        : Present
-License Placeholder   : Present
-GPU Mode              : N/A
-CEC OTA-signed Blob   : Not Present
-
-    Backup OK: /home/jeb/vbios-work/3080-backup-pre-rebar.rom (999424 bytes)
-[5] Current GPU modes (before change)...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          GPU Mode: N/A
-[6] Setting GPU mode: physical_display_enabled_8GB_bar1...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-
-WARNING: This operation updates the firmware on the board and could make
-         the device unusable if your host system lacks the necessary support.
-
-Specifed GPU Mode "physical_display_enabled_8gb_bar1"
-
-GeForce RTX 3080     (10DE,2206,1043,87B0) S:00,B:0F,D:00,F:00
-
-Specified GPU mode not supported on this device 0x2206.
-
-    gpumode exit status: 0
-[7] GPU modes after change...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          GPU Mode: N/A
-[8] Reloading NVIDIA kernel modules...
-[9] Restoring services...
-    nvidia-persistenced + gpu-watchdog started
-[10] Restarting LightDM...
-[11] Done.
-SUCCESS: GPU mode set to physical_display_enabled_8GB_bar1.
-REBOOT REQUIRED for BAR1 change to take effect.
-After reboot verify with: nvidia-smi -q -i 1 | grep -A3 'BAR1'
-========================================================
-  End Sun May 17 10:31:14 AM CDT 2026
-========================================================
-
-========================================================
-  RTX 3080 ReBAR Flash — Sun May 17 10:34:28 AM CDT 2026
-  ROM: /home/jeb/vbios-work/94.02.42.40.AS02.rom
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    gpu-watchdog: stopped (state=inactive)
-    nvidia-persistenced: masked+stopped
-    Killing remaining GPU processes...
- 19546 20216 19546 20216 19546 20216 19546 20216    All GPU handles released
-[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-    Modules unloaded OK
-[3] Verifying GPU is visible (nvflash --list)...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-NVIDIA display adapters present in system:
-<0> Graphics Device      (10DE,2C02,1458,4177) S:00,B:0E,D:00,F:00
-<1> GeForce RTX 3080     (10DE,2206,1043,87B0) S:00,B:0F,D:00,F:00
-[4] Backing up current VBIOS (GPU 1)...
-    Existing backup found: /home/jeb/vbios-work/3080-backup-pre-rebar.rom (999424 bytes) — skipping re-backup
-[5] Checking ROM compatibility...
-    ROM size: 1048576 bytes
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          Status Register     : Restricted or unsupported.
-    check exit status: 0
-[6] Flashing ROM to GPU 1...
-    *** Do NOT interrupt — takes ~30 seconds ***
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Command format not recognized
-
-Press 'Enter' to list of the available commands, or 'Q' to quit.
-console read: Bad file descriptor
-
-ERROR: Reading from the keyboard failed
-    Flash exit status: 2
-[7] Read-back verification...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          Build GUID            : 36762E5D66904B30A099C58D53966BF5
-Build Number          : 29236791
-IFR Subsystem ID      : 1043-87B0
-Subsystem Vendor ID   : 0x1043
-Subsystem ID          : 0x87B0
-Version               : 94.02.42.40.66
-Image Hash            : N/A
-Hierarchy ID          : Normal Board
-Build Date            : 10/23/20
-Modification Date     : 11/26/20
-UEFI Version          : 0x60009 ( x64 )
-UEFI Variant ID       : 0x000000000000000A ( GA1xx )
-UEFI Signer(s)        : Microsoft Corporation UEFI CA 2011
-XUSB-FW Version ID    : N/A
-XUSB-FW Build Time    : N/A
-InfoROM Version       : G001.0000.03.03
-InfoROM Backup        : Present
-License Placeholder   : Present
-GPU Mode              : N/A
-CEC OTA-signed Blob   : Not Present
-
-    Post-flash read OK (999424 bytes)
-[8] Reloading NVIDIA kernel modules...
-[9] Restoring services...
-    nvidia-persistenced + gpu-watchdog started
-[10] Restarting LightDM...
-[11] Done.
-FAILED: nvflash exited with status 2 — VBIOS was NOT changed.
-Backup is safe at: /home/jeb/vbios-work/3080-backup-pre-rebar.rom
-
-Possible causes:
-  - ROM subsystem mismatch (try AS03.rom as alternative)
-  - nvflash version incompatible with this VBIOS
-  - Hardware write-protect enabled (check GPU dipswitch)
-========================================================
-  End Sun May 17 10:34:57 AM CDT 2026
-========================================================
-
-========================================================
-  RTX 3080 ReBAR Flash — Sun May 17 10:37:23 AM CDT 2026
-  ROM: /home/jeb/vbios-work/94.02.42.40.AS02.rom
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    gpu-watchdog: stopped (state=inactive)
-    nvidia-persistenced: masked+stopped
-    Killing remaining GPU processes...
- 21622 22405 21622 22405 21622 22405 21622 22405    All GPU handles released
-[1] Stopping LightDM (X session will end)...
-[2] Unloading NVIDIA kernel modules...
-    Modules unloaded OK
-[3] Verifying GPU is visible (nvflash --list)...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-NVIDIA display adapters present in system:
-<0> Graphics Device      (10DE,2C02,1458,4177) S:00,B:0E,D:00,F:00
-<1> GeForce RTX 3080     (10DE,2206,1043,87B0) S:00,B:0F,D:00,F:00
-[4] Backing up current VBIOS (GPU 1)...
-    Existing backup found: /home/jeb/vbios-work/3080-backup-pre-rebar.rom (999424 bytes) — skipping re-backup
-[5] Checking ROM compatibility...
-    ROM size: 1048576 bytes
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          Status Register     : Restricted or unsupported.
-    check exit status: 0
-[6] Flashing ROM to GPU 1...
-    *** Do NOT interrupt — takes ~30 seconds ***
-spawn /home/jeb/vbios-work/x64/nvflash -i 1 --force-subsystem-id --force-board-id -6 /home/jeb/vbios-work/94.02.42.40.AS02.rom
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Command format not recognized
-
-Press 'Enter' to list of the available commands, or 'Q' to quit.
-
-
--- Commands and Options -- 
-help                   ? [pp|app]                                                                      Display help screen. pp for additional
-                                                                                                       help on power policies descriptions.
-                                                                                                       app for additional help on app profile
-                                                                                                       descriptions.
-licenseinfo                                                                                            Display license information
-save                   b <filename>                                                                    Read EEPROM and save to <filename>.
-osfpupdate               <filename>                                                                    Update OSFP device FW
-compare                k <filename>                                                                    Read EEPROM full content and compare with <filename>.
-verify                 h <filename>                                                                    Verify <filename> matches EEPROM if flashed.
-version                v <filename>                                                                    Display firmware version information
-                                                                                                       (if no filename, acts on display adapter).
-check                  c                                                                               Check for supported EEPROM.
-list                   a                                                                               List all NVIDIA display adapters found in
-                                                                                                       the system.
-osfplist                                                                                               List out OSFP devices connected to all NVSwitches in the system
-protecton              w                                                                               Write protect EEPROM (only on some EEPROM's)
-protectoff             r                                                                               Remove EEPROM write protect (only on some
-                                                                                                       EEPROM's).
-                                                                                                       
-protectmain                                                                                            Write protect the main firmware segment of the EEPROM.
-protectlock                                                                                            Set status register protect and status register lock.
-protectinfo                                                                                            Display the block protection status.
-Press 'Enter' to continue, or 'Q' to quit.
-
-license                  <license file>                                                                Provide a license file for updating VBIOS.
-licinfo                                                                                                Display license file content. license file
-                                                                                                       is provided by --license option.
-                                                                                                       
-ecid                                                                                                   Display GPU ECID/PDI.
-licreq                   <file>,<reqType>                                                              Generate a License Request File by
-                                                                                                       specifying <reqType> to submit to Nvidia.
-                                                                                                       
-lspci                                                                                                  List all the PCI devices in the system.
-setpci                   <R.W>[=D[:M]]                                                                 Read/Write PCI Config register.
-    Format is: <REG.WIDTH>[=DATA[:MASK]]
-    Read  operation: <REG.WIDTH>
-    Write operation: <REG.WIDTH>=DATA[:MASK]
-                                                                                                       
-progfwovercec            <type> <filename> [flag1 flag2]                                               Flash firmware <filename> over CEC
-  <type>  : "gmac", "rtu", "bmc" or "gpu"
-  [flag]  : "reset" or "offpreservecfg"
-   - reset : Optional flag to request CEC
-             perform a reset when finished.
-   - offpreservecfg : No config preservation.
-querycec                 <filename>                                                                    Display crypto device information
-Press 'Enter' to continue, or 'Q' to quit.
-
-attestcec                [filename] [csv],                                                             Request FW attestation to CEC 
-                                                                                                       and save the response data to [filename],
-                                                                                                       and verify the fields in [csv].
-attest                   [filename] [csv],                                                             Request FW attestation
-                                                                                                       and save the response data to [filename],
-                                                                                                       and verify the fields in [csv].
-listcec                  <filename>                                                                    List all the CEC devices
-getceccert               <filename>,[slot]                                                             Download cert chain from ERoT
-getceclog                <filename>                                                                    Download internal log from ERoT.
-getfwlog                 <filename>                                                                    Download firmware log.
-backgroundcopy                                                                                         Initiate Background Copy
-disableibupdate                                                                                        Disable in-band firmware update.
-dbgtokenrequest          <filename>                                                                    Download signed transcript for Debug Token request
-installtoken                                                                                           Install Debug Token
-erasetoken                                                                                             Erase Debug Token
-querytoken               [filename]                                                                    Query Debug Token information on device/file.
-                                                                                                       (if [filename] exists, acts on the file).
-activatetoken                                                                                          Activate Installed Debug Token
-aggregatetoken           <directory>                                                                   Concatenate token binaries in the directory
-cmpgmac                  <filename>                                                                    Read MCU Flash ROM and compare with <filename>.
-proggmac                 <filename>                                                                    Flash GMAC MCU firmware (AI).
-savegmac                 <filename>                                                                    Read GMAC MCU firmware (AI) and
-                                                                                                       save to <filename>.
-                                                                                                       
-listgmac                                                                                               List all the GMAC MCU devices
-Press 'Enter' to continue, or 'Q' to quit.
-
-querygmac                [<filename>]                                                                  Display GMAC MCU firmware (AI) version
-                                                                                                       (if no filename, acts on GMAC MCU device).
-                                                                                                       
-listgpuled                                                                                             List all the GPU LED Lighting MCUs.
-proggpuled               <filename>                                                                    Flash GPU LED Lighting MCU firmware (AI).
-querygpuled              <filename>                                                                    Display GPU LED Lighting MCU FW (AI) version
-                                                                                                       (if no filename, acts on GPU LED Lighting MCU).
-                                                                                                       
-savegpuled               <filename>                                                                    Read GPU LED Lighting MCU firmware (AI)
-                                                                                                       and save to <filename>.
-                                                                                                       
-rdciegpuled              <filename>                                                                    Read CIE data from GPU LED Lighting MCUand save to <filename>.
-wrciegpuled              <filename>                                                                    Write CIE data to GPU LED Lighting MCU.
-calibrategpuled          [millisecond]                                                                 Calibrate GPU LED clock tick.
-listbridgeled                                                                                          List all the bridge LED Lighting MCUs.
-progbridgeled            <filename>                                                                    Flash bridge LED Lighting MCU firmware (AI).
-querybridgeled           <filename>                                                                    Display bridge LED Lighting MCU FW (AI) version
-                                                                                                       (if no filename, acts on LED Lighting MCU).
-                                                                                                       
-savebridgeled            <filename>                                                                    Read GPU LED Lighting MCU firmware (AI)
-                                                                                                       and save to <filename>.
-                                                                                                       
-wrpersrgb                <R1>:<G1>:<B1>:<R2>:<G2>:<B2>                                                 Write persistent-RGB color in hex to MCU.
-rdciebridgeled           <filename>                                                                    Read CIE data from bridge LED Lighting MCU
-                                                                                                       and save to <filename>.
-Press 'Enter' to continue, or 'Q' to quit.
-
-wrciebridgeled           <filename>                                                                    Write CIE data to bridge LED Lighting MCU.
-calibratebridgeled       [millisecond]                                                                 Calibrate bridge LED clock tick.
-rdbridgeid               <filename>                                                                    Read bridge ID ROM data from bridge board
-                                                                                                       and save to <filename>.
-wrbridgeid               <filename>                                                                    Write bridge ID ROM data to bridge board.
-buildinfo                                                                                              Display tool building information.
-display                d [bytes]                                                                       Display 256 the first bytes of the EEPROM
-                                                                                                       (default is 256 bytes).
-                                                                                                       
-offset                   [start]                                                                       Used to assign start address to offset. Ex- 0x10
-                                                                                                       
-string                                                                                                 Display only the ASCII values of the EEPROM
-                                                                                                       
-createlic                                                                                              Create the License placeholder.
-updateuefi             u <filename>                                                                    Update only the UEFI portion of the ROM 
-                                                                                                       image from <filename>.
-                                                                                                       
-updatexusb               <filename>                                                                    Update only the XUSB portion of the ROM 
-                                                                                                       image from <filename>.
-                                                                                                       
-fullrecovery             [foldername]                                                                  Auto full recovery ROM from the backups.
-romout                   <filename>                                                                    Write ROM to file instead of physical ROM.
-hwid                                                                                                   Display hardware identifiers
-Press 'Enter' to continue, or 'Q' to quit.
-
-reset                    <type>                                                                        Reset GPU
-queryrtu                                                                                               Display RTU information.
-setmig                   <enable|disable>                                                              Enable or disable MIG mode
-setecc                   <enable|disable>                                                              Enable or disable ECC mode
-gpumode                  [mode name]                                                                   Set the GPU mode.< Argument usage:
-   Mode name : physical_display_enabled_256MB_bar1
-               physical_display_disabled
-               physical_display_enabled_8GB_bar1
-                                                                                                       
-listgpumodes                                                                                           List the GPU mode of all NVIDIA adapters in the system.
-addpp                    <policy> attr V                                                               Add a power policy. See '--help pp' for more details.
-delpp                    <policy> attr                                                                 Delete a power policy. See '--help pp' for more details.
-listpp                                                                                                 List all current power policies. See '--help pp' for more details.
-addtgpapp                <profileId> fbRailPwrmW otherRailPwrmW firstWorkloadParam secondWorkloadParam Add a TGP app profile. See '--help app' for more details.
-delapp                   <profileId>                                                                   Delete an app profile. See '--help app' for more details.
-listapp                                                                                                List all current app profiles. See '--help app' for more details.
-repairfs                                                                                               Repair broken InfoROM file System.
-flashinforom             <filename>                                                                    Flash InfoROM with data from <filename>.
-backupinforom                                                                                          Backup InfoROM data to the embedded recovery
-                                                                                                       image.
-                                                                                                       
-recoverinforom         R                                                                               Restore InfoROM from embedded recovery image.
-sanitizefs               <filename>.rom                                                                Flash sanitized InfoROM filesystem.
-Press 'Enter' to continue, or 'Q' to quit.
-
-licflash                 <filename>                                                                    Flash a license file.
-lichelp                                                                                                Display help screen for license operations.
-rdhlk                    <filename>                                                                    Read HULK license file object to file.
-wrhlk                    <filename>                                                                    Install unlock license into EEPROM.
-rdoem                    <filename>                                                                    Read OEM object to <filename>.
-wroem                    <filename>                                                                    Write OEM object from <filename> to Inforom.
-rdulf                    <filename>                                                                    Read uGPU license file object to file.
-wrulf                    <filename>                                                                    Write uGPU license file object from file to Inforom.
-rdupr                    <filename>                                                                    Read uGPU Personality Request object to file.
-wrupr                    <filename>                                                                    Write uGPU Personality Request from file to Inforom.
-rdobd                    <filename> [csv]                                                              Read OBD object to <filename> with optional csv format.
-rmhlk                                                                                                  Erase contents of the HULK object
-elsessionstart           <limit>                                                                       Start an erase ledger session
-elsessionquery                                                                                         Query erase ledger session
-elsessionclear                                                                                         Clear erase ledger session
-wrccc                    <filename>                                                                    Install device certificate into EEPROM.
-rdccc                    <filename>                                                                    Read device certificate from EEPROM.
-verifyccc                                                                                              Verify device certificate stored in EEPROM.
-setccm                   <enable|disable>                                                              Enable or disable Confidential Computing mode
-setccd                   <enable|disable>                                                              Enable or disable Confidential Computing Development mode
-rdccm                                                                                                  Read Confidential Computing mode
-overrideaddrid                                                                                         Allow the addressing ID mismatch
-                                                                                                       
-Press 'Enter' to continue, or 'Q' to quit.
-
-overridesysid                                                                                          Allow the system ID mismatch
-                                                                                                       
-overriderefdes                                                                                         Allow the reference designator mismatch
-                                                                                                       
-skipmcuidchecks                                                                                        Allow to skip the IDs mismatch when flash MCU to an non-generic image.
-offsysbridgefilter                                                                                     Turn off system bridge device filtering.
-offnvlinkswfilter                                                                                      Turn off nvlink switch device filtering
-outfilepath              <output path>                                                                 Specify the location where the output file
-                                                                                                       should be saved. Works only with commands
-                                                                                                       '--gpumode' and '--listgpumodes'.
-mergeinforom                                                                                           Merge InfoROM block if required.
-force_preserve_inforom                                                                                 Force preserve InfoROM block from the existing firmware
-reallocateglob                                                                                         Force reallocate InfoROM glob offset according to target image for flashing
-bpaligninforom                                                                                         Align InfoROM on a block protection boundary.
-reboot                 y                                                                               Reboot the PC after other tasks completed.
-filterdevid            f <value>[,<mask>]                                                              Filter device list by device ID and optional
-                                                                                                       mask.
-                                                                                                       
-reversefilterid        U <value>                                                                       Remove item from the device ID list if
-                                                                                                       specified device ID is matched.
-                                                                                                       
-upgradeonly                                                                                            Only allow upgrading of firmware based on
-                                                                                                       version.
-                                                                                                       
-Press 'Enter' to continue, or 'Q' to quit.
-
-nodowngrade                                                                                            Allow sidegrading and upgrading of firmware version.
-allowdowngrade                                                                                         Permit a downgrade of firmware 
-                                                                                                       if it defaults not permit a downgrade of firmware
-overridesub            6                                                                               Allow firmware and adapter PCI subsystem ID
-                                                                                                       mismatch.
-                                                                                                       
-index                  i <index>                                                                       Force a specific device index.
-osfpindex                <index>                                                                       Force specific osfp device index(s)
-pcisegbus              B [<seg#>:]<bus#>:                                                              Select a specific device by using a specified
-                                                                                                       segment# and bus#. The following format
-                                                                                                       is allowed, <seg#>:<bus#>:<dev#>.<func#>.
-                                                                                                       All numbers are hexadecimal. The segment#
-                                                                                                       can be optional, and has a default value(0)
-                                                                                                       if no input value.The dev# and the func# 
-                                                                                                       can be omitted for the --pcisegbus command.
-auto                   A                                                                               When possible, execute the specified command
-                                                                                                       without user intervention.
-silence                s                                                                               Silence all audio beeps.
-beep                   !                                                                               Beep to signal updating progress.
-nolight                l                                                                               Do not light keyboard LEDs.
-Press 'Enter' to continue, or 'Q' to quit.
-
-override               o <level>                                                                       Override safety check level:
-   default  unknown EEPROM | NV adapter aborts application.
-   level=1  unknown EEPROM acceptable for read operations.
-   level=2  unknown NV adapter acceptable for read operations.
-   level=3  Combined effect of 1,2 (cannot write to unknown EEPROM or adapter).
-                                                                                                       
-log                    L <log file>                                                                    Create a log file in truncat mode ( or add option --append in append mode )
-nopowerchk             p                                                                               Skip power level check.
-offswdriver            S                                                                               Turn off automatic switch driver state.
-append                                                                                                 Write log file in append mode.
-guidcheck                <GUID>                                                                        Check if Build GUID match with VBIOS image
-                                                                                                       before proceeding.
-fullbackup               [foldername]                                                                  Backup the existing ROM from display
-                                                                                                       adapter prior to flash.
-ignoreinforom                                                                                          Ignore InfoROM operation.
-ignorebootblock                                                                                        Ignore bootblock operation.
-gmacinvalid                                                                                            Allow to flash the invalid data to MCU.
-json                   J                                                                               Display Json format data
-matchversion                                                                                           Match exact VBIOS version string
-matchsessionid                                                                                         Match VBIOS session ID
-offvfvantirollback                                                                                     Permit a downgrade of vbios version older than OBD Vbios Factory Version 
-                                                                                                       if OBD Vbios Factory Version is already populated
-reset_after_update                                                                                     Reset occurs after successful flash.
-
-Use a single dash ("-") to use the single letter version of a command.
-Use a double dash ("--") to use the longer descriptive version of a command.
-Use equals ("=") to specify parameters, with separating commas (",").
-
--- Sample Usage --
-nvflash --index=1 nv30nz.rom
-Press 'Enter' to continue, or 'Q' to quit.
-
--- Supported EEPROM's --
-Atmel      AT24CM02 2048Kx1S     1.7-5.5V, 256B page,  4k blk, ID=(00,10F5)
-   ST      STM24C02    2Kx1S     1.7-5.5V,   8B page,  0k blk, ID=(00,FFFF)
-  AMD    AM29LV001B  128Kx8         2.7vV,   1B page, 16k blk, ID=(01,006D)
-  AMD     AM29LV010  128Kx8         2.7vV,   1B page, 16k blk, ID=(01,006E)
-  AMD    AM29LV001T  128Kx8         2.7vV,   1B page, 16k blk, ID=(01,00ED)
-   CY     S25FS064S 65536Kx1S   1.65-1.95V, 256B page, 64k blk, ID=(01,0217)
-   CY     S25FL208K 8192Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(01,4014)
-Atmel      AT49F512   64Kx8  5.0,3.0,2.7V,   1B page,  0k blk, ID=(1F,0003)
-Atmel     AT49F001T  128Kx8          5.0V,   1B page,  0k blk, ID=(1F,0004)
-Atmel      AT49F001  128Kx8          5.0V,   1B page,  0k blk, ID=(1F,0005)
-Atmel  AT49BV/LV010  128Kx8      2.7-3.6V,   1B page,  0k blk, ID=(1F,0017)
-Atmel AT29LV/BV010A  128Kx8          3.0V, 128B page,  0k blk, ID=(1F,0035)
-Atmel     AT29LV512   64Kx8          3.0V, 128B page,  0k blk, ID=(1F,003D)
-Atmel     AT25F1024 1024Kx1S     2.7-3.6V, 256B page, 32k blk, ID=(1F,0040)
-Atmel      AT29C512   64Kx8          5.0V, 128B page,  0k blk, ID=(1F,005D)
-Atmel     AT25F1024 1024Kx1S     2.7-3.6V, 256B page, 32k blk, ID=(1F,0060)
-Atmel     AT25F2048 2048Kx1S     2.7-3.6V, 256B page, 64k blk, ID=(1F,0063)
-Atmel      AT25F512  512Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(1F,0065)
-Atmel      AT49F010  128Kx8          5.0V,   1B page,  0k blk, ID=(1F,0087)
-Atmel     AT29C010A  128Kx8          5.0V, 128B page,  0k blk, ID=(1F,00D5)
-Atmel     AT25DF021 2048Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,4300)
-Adest    AT25DF021A 2048Kx1S    1.65-3.6V, 256B page,  4k blk, ID=(1F,4301)
-Press 'Enter' to continue, or 'Q' to quit.
-
-Atmel     AT25DF041 4096Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,4401)
-Adest    AT25DF041B 4096Kx1S    1.65-3.6V, 256B page,  4k blk, ID=(1F,4402)
-Adest     AT25DL081 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(1F,4502)
-Adest     AT25DF161 16384Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,4602)
-Atmel     AT25FS010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(1F,6601)
-Atmel     AT25SF041 4096Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,8401)
-   ST        M25P05  512Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(20,0005)
-   ST        M25P10 1024Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(20,0010)
-   ST      M29W512B   64Kx8      2.7-3.6V,   1B page,  0k blk, ID=(20,0027)
-  Num      M25P10-A 1024Kx1S     2.3-3.6V, 256B page, 32k blk, ID=(20,2011)
-  Num        M25P20 2048Kx1S     2.3-3.6V, 256B page, 64k blk, ID=(20,2012)
-   MU   N25Q016A11E 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(20,BB15)
- AMIC       A25L512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3010)
- AMIC       A25L010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3011)
- AMIC       A25L020 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3012)
- AMIC       A25L040 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3013)
-   ST      M95256-D  256Kx1S     1.7-5.5V,  64B page,  4k blk, ID=(47,8725)
-uChip      25AA320A    4Kx8S     1.8-5.5V,  32B page,  0k blk, ID=(47,8747)
-   MX   MX25U12835F 1024Kx1S   1.65-2.05V, 256B page,  4k blk, ID=(47,8800)
-   MX   MX25U12835F 8192Kx1S   1.65-2.05V, 256B page,  4k blk, ID=(47,8801)
-   ON CAT25256-512/STM95512  256Kx1S     1.8-5.5V,  64B page,  4k blk, ID=(47,9700)
- XLNX XCF128XFTG64C 8192Kx16 9.5,8.5,2.0,1.7V,   8B page, 128k blk, ID=(49,016B)
- Tenx      ICE25P05  512Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(5E,0001)
-  PMC     Pm25LD512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D20)
-Press 'Enter' to continue, or 'Q' to quit.
-
-  PMC     Pm25LD010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D21)
-  PMC     Pm25LD020 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D22)
-  PMC     Pm25LQ020 2048Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(7F,9D42)
-  PMC     Pm25LQ040 4096Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(7F,9D43)
-  PMC     Pm25LV020 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D7D)
-  PMC     Pm25LV040 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D7E)
- PUYA       P25Q40L 4096Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6013)
- PUYA       P25Q80L 8192Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6014)
- PUYA       P25Q16L 16384Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6015)
- PUYA      P25Q32SL 32768Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6016)
- PUYA     PY25R32LB 32768Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6316)
- PUYA     PY25Q32LC 32768Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6516)
-  PMC     Pm39LV512   64Kx8      3.0-3.6V,   1B page,  4k blk, ID=(9D,001B)
-  PMC     Pm39LV010  128Kx8      3.0-3.6V,   1B page,  4k blk, ID=(9D,001C)
-  PMC     Pm25LV512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(9D,007B)
-  PMC     Pm25LV010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(9D,007C)
- ISSI     IS25WQ020 2048Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,1152)
- ISSI     IS25WQ040 4096Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,1253)
- ISSI     IS25WP040 4096Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7013)
- ISSI     IS25WP080 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7014)
- ISSI    IS25WP016D 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7015)
- ISSI IS25WP032/J032F 32768Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7016)
- ISSI    IS25WP128F 131072Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7018)
- ISSI IS25WP256D/FHLE 262144Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7019)
-Press 'Enter' to continue, or 'Q' to quit.
-
-   FM       FM25F02 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(A1,3112)
-   FM       FM25F04 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(A1,3113)
-  SST    SST29EE010  128Kx8          5.0V, 128B page,  0k blk, ID=(BF,0007)
-  SST SST29LE/VE010  128Kx8      2.9,2.7V, 128B page,  0k blk, ID=(BF,0008)
-  SST SST29LE/VE512   64Kx8      2.9,2.7V, 128B page,  0k blk, ID=(BF,003D)
-  SST    SST45VF010 1024Kx1S     3.0-3.6V,   1B page,  4k blk, ID=(BF,0042)
-  SST    SST25LF020 2048Kx1S     3.0-3.6V, 256B page,  4k blk, ID=(BF,0043)
-  SST    SST25LF040 4096Kx1S     3.0-3.6V, 256B page,  4k blk, ID=(BF,0044)
-  SST    SST25VF512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(BF,0048)
-  SST    SST25VF010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(BF,0049)
-  SST    SST29EE512   64Kx8          5.0V, 128B page,  0k blk, ID=(BF,005D)
-  SST    SST39SF010  128Kx8          5.0V,   1B page,  4k blk, ID=(BF,00B5)
-  SST    SST39VF512   64Kx8      2.7-3.6V,   1B page,  4k blk, ID=(BF,00D4)
-  SST    SST39VF010  128Kx8      2.7-3.6V,   1B page,  4k blk, ID=(BF,00D5)
-  SST   SST25VF020B 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(BF,258C)
-uChip  SST26WF080BT 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(BF,2658)
-   MX     MX29F001T  128Kx8          5.0V,   1B page,  0k blk, ID=(C2,0018)
-   MX     MX29F001B  128Kx8          5.0V,   1B page,  0k blk, ID=(C2,0019)
-   MX      MX25L512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2010)
-   MX     MX25L1005 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2011)
-   MX     MX25L2005 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2012)
-   MX    MX25L4005A 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2013)
-   MX    MX25L8073E 8192Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2014)
-   MX    MX25U2033E 2048Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2532)
-Press 'Enter' to continue, or 'Q' to quit.
-
-   MX    MX25U4033E 4096Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2533)
-   MX MX25U8033E-MX25U8035F 8192Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2534)
-   MX    MX25U1635F 16384Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2535)
-   MX    MX25U3232F 32768Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2536)
-   MX   MX25U25645G 262144Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2539)
-   MX   MX25U51245G 524288Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,253A)
-   GD      GD25Q512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4010)
-   GD       GD25Q10 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4011)
-   GD       GD25Q20 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4012)
-   GD       GD25Q40 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4013)
-   GD     GD25LQ20B 2048Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6012)
-   GD     GD25LQ40B 4096Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6013)
-   GD   GD25LQ80B/E 8192Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6014)
-   GD     GD25LQ16E 16384Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6015)
-   GD     GD25LQ32E 32768Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6016)
-   GD     GD25LR64E 65536Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6017)
-   GD    GD25LR128E 131072Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6018)
-WBond       W39L010  128Kx8          3.3V,   1B page,  4k blk, ID=(DA,0031)
-WBond       W39L512   64Kx8          3.3V,   1B page,  4k blk, ID=(DA,0038)
-WBond      W29C011A  128Kx8          5.0V, 128B page,  0k blk, ID=(DA,00C1)
-WBond      W29EE512   64Kx8          5.0V, 128B page,  0k blk, ID=(DA,00C8)
-WBond      W25X05CL  512Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(EF,3010)
-WBond       W25X10A 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3011)
-WBond       W25X20A 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3012)
-Press 'Enter' to continue, or 'Q' to quit.
-
-WBond       W25X40A 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3013)
-WBond       W25X80A 8192Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3014)
-WBond      W25Q80BV 8192Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(EF,4014)
-WBond      W25Q20EW 2048Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6012)
-WBond      W25Q40EW 4096Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6013)
-WBond      W25Q80EW 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6014)
-WBond   W25Q16FW/JW 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6015)
-WBond      W25Q32JW 32768Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6016)
-WBond      W25R64JW 65536Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6017)
-WBond  W25R128JWPIQ 131072Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6018)
-WBond     W25Q256JW 262144Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6019)
-WBond  W25Q16JWXHIM 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,8015)
-WBond     W25Q32JW  32768Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,8016)
--- Sample Usage --
-
-  Create unlock license request file.
-  > nvflash --licreq=LicenseRequest.bin USER_FW_MOD
-
-  Install unlock license objects.
-  > nvflash --wrhlk=License.hulk
-
-  Flash tweaked firmware.
-  > nvflash --license=License.hulk vbios.rom
-
-    Flash exit status: 5
-[7] Read-back verification...
-NVIDIA Firmware Update Utility (Version 5.867.0)
-Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
-
-Reading EEPROM (this operation may take up to 30 seconds)
-
-                                                          Build GUID            : 36762E5D66904B30A099C58D53966BF5
-Build Number          : 29236791
-IFR Subsystem ID      : 1043-87B0
-Subsystem Vendor ID   : 0x1043
-Subsystem ID          : 0x87B0
-Version               : 94.02.42.40.66
-Image Hash            : N/A
-Hierarchy ID          : Normal Board
-Build Date            : 10/23/20
-Modification Date     : 11/26/20
-UEFI Version          : 0x60009 ( x64 )
-UEFI Variant ID       : 0x000000000000000A ( GA1xx )
-UEFI Signer(s)        : Microsoft Corporation UEFI CA 2011
-XUSB-FW Version ID    : N/A
-XUSB-FW Build Time    : N/A
-InfoROM Version       : G001.0000.03.03
-InfoROM Backup        : Present
-License Placeholder   : Present
-GPU Mode              : N/A
-CEC OTA-signed Blob   : Not Present
-
-    Post-flash read OK (999424 bytes)
-[8] Reloading NVIDIA kernel modules...
-[9] Restoring services...
-    nvidia-persistenced + gpu-watchdog started
-[10] Restarting LightDM...
-[11] Done.
-FAILED: nvflash exited with status 5 — VBIOS was NOT changed.
-Backup is safe at: /home/jeb/vbios-work/3080-backup-pre-rebar.rom
-
-Possible causes:
-  - ROM subsystem mismatch (try AS03.rom as alternative)
-  - nvflash version incompatible with this VBIOS
-  - Hardware write-protect enabled (check GPU dipswitch)
-========================================================
-  End Sun May 17 10:37:50 AM CDT 2026
-========================================================
-
-========================================================
-  RTX 3080 ReBAR Flash — Sun May 17 10:52:01 AM CDT 2026
-  ROM: /home/jeb/vbios-work/94.02.42.40.AS02.rom
-========================================================
-[0] Stopping GPU consumers...
-    Ollama: stopped
-    gpu-watchdog: stopped (state=inactive)
-    nvidia-persistenced: masked+stopped
-    Killing remaining GPU processes...
-  2545  7356  2545  7356  2545  7356  2545  7356    All GPU handles released
+ 13941 14677 15191 15259 13941 14677 15191 15259 13941 14677 15191 15259 13941 14677 15191 15259    All GPU handles released
 [1] Stopping LightDM (X session will end)...
 [2] Unloading NVIDIA kernel modules...
     Modules unloaded OK
@@ -831,442 +39,49 @@ Setting EEPROM protection complete.
     protectoff exit status: 0 (non-zero may be OK if no protect was set)
 [6] Flashing ROM to GPU 1...
     *** Do NOT interrupt — takes ~30 seconds ***
-spawn /home/jeb/vbios-work/x64/nvflash -i 1 --force-subsystem-id --force-board-id /home/jeb/vbios-work/94.02.42.40.AS02.rom
+spawn /home/jeb/vbios-work/x64/nvflash -i 1 /home/jeb/vbios-work/v6-extracted/94.02.42.40.AS02.rom
 NVIDIA Firmware Update Utility (Version 5.867.0)
 Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
 
-Command format not recognized
+Checking for matches between display adapter(s) and image(s)...
 
-Press 'Enter' to list of the available commands, or 'Q' to quit.
+Reading EEPROM (this operation may take up to 30 seconds)
 
+                                                          Current      - Version:94.02.42.40.65 ID:10DE:2206:1043:87B0
+               GPU Board (Normal Board)
+Replace with - Version:94.02.42.40.66 ID:10DE:2206:1043:87B0
+               GPU Board (Normal Board)
 
--- Commands and Options -- 
-help                   ? [pp|app]                                                                      Display help screen. pp for additional
-                                                                                                       help on power policies descriptions.
-                                                                                                       app for additional help on app profile
-                                                                                                       descriptions.
-licenseinfo                                                                                            Display license information
-save                   b <filename>                                                                    Read EEPROM and save to <filename>.
-osfpupdate               <filename>                                                                    Update OSFP device FW
-compare                k <filename>                                                                    Read EEPROM full content and compare with <filename>.
-verify                 h <filename>                                                                    Verify <filename> matches EEPROM if flashed.
-version                v <filename>                                                                    Display firmware version information
-                                                                                                       (if no filename, acts on display adapter).
-check                  c                                                                               Check for supported EEPROM.
-list                   a                                                                               List all NVIDIA display adapters found in
-                                                                                                       the system.
-osfplist                                                                                               List out OSFP devices connected to all NVSwitches in the system
-protecton              w                                                                               Write protect EEPROM (only on some EEPROM's)
-protectoff             r                                                                               Remove EEPROM write protect (only on some
-                                                                                                       EEPROM's).
-                                                                                                       
-protectmain                                                                                            Write protect the main firmware segment of the EEPROM.
-protectlock                                                                                            Set status register protect and status register lock.
-protectinfo                                                                                            Display the block protection status.
-Press 'Enter' to continue, or 'Q' to quit.
+Update display adapter firmware?
+Press 'y' to confirm (any other key to abort):  y
 
-license                  <license file>                                                                Provide a license file for updating VBIOS.
-licinfo                                                                                                Display license file content. license file
-                                                                                                       is provided by --license option.
-                                                                                                       
-ecid                                                                                                   Display GPU ECID/PDI.
-licreq                   <file>,<reqType>                                                              Generate a License Request File by
-                                                                                                       specifying <reqType> to submit to Nvidia.
-                                                                                                       
-lspci                                                                                                  List all the PCI devices in the system.
-setpci                   <R.W>[=D[:M]]                                                                 Read/Write PCI Config register.
-    Format is: <REG.WIDTH>[=DATA[:MASK]]
-    Read  operation: <REG.WIDTH>
-    Write operation: <REG.WIDTH>=DATA[:MASK]
-                                                                                                       
-progfwovercec            <type> <filename> [flag1 flag2]                                               Flash firmware <filename> over CEC
-  <type>  : "gmac", "rtu", "bmc" or "gpu"
-  [flag]  : "reset" or "offpreservecfg"
-   - reset : Optional flag to request CEC
-             perform a reset when finished.
-   - offpreservecfg : No config preservation.
-querycec                 <filename>                                                                    Display crypto device information
-Press 'Enter' to continue, or 'Q' to quit.
+Reading EEPROM (this operation may take up to 30 seconds)
 
-attestcec                [filename] [csv],                                                             Request FW attestation to CEC 
-                                                                                                       and save the response data to [filename],
-                                                                                                       and verify the fields in [csv].
-attest                   [filename] [csv],                                                             Request FW attestation
-                                                                                                       and save the response data to [filename],
-                                                                                                       and verify the fields in [csv].
-listcec                  <filename>                                                                    List all the CEC devices
-getceccert               <filename>,[slot]                                                             Download cert chain from ERoT
-getceclog                <filename>                                                                    Download internal log from ERoT.
-getfwlog                 <filename>                                                                    Download firmware log.
-backgroundcopy                                                                                         Initiate Background Copy
-disableibupdate                                                                                        Disable in-band firmware update.
-dbgtokenrequest          <filename>                                                                    Download signed transcript for Debug Token request
-installtoken                                                                                           Install Debug Token
-erasetoken                                                                                             Erase Debug Token
-querytoken               [filename]                                                                    Query Debug Token information on device/file.
-                                                                                                       (if [filename] exists, acts on the file).
-activatetoken                                                                                          Activate Installed Debug Token
-aggregatetoken           <directory>                                                                   Concatenate token binaries in the directory
-cmpgmac                  <filename>                                                                    Read MCU Flash ROM and compare with <filename>.
-proggmac                 <filename>                                                                    Flash GMAC MCU firmware (AI).
-savegmac                 <filename>                                                                    Read GMAC MCU firmware (AI) and
-                                                                                                       save to <filename>.
-                                                                                                       
-listgmac                                                                                               List all the GMAC MCU devices
-Press 'Enter' to continue, or 'Q' to quit.
+                                                          [>                                                 ] 1   %[=>                                                ] 2   %[=>                                                ] 3   %[==>                                               ] 4   %[==>                                               ] 5   %[===>                                              ] 6   %[===>                                              ] 7   %[====>                                             ] 8   %[====>                                             ] 9   %[=====>                                            ] 10  %[=====>                                            ] 11  %[======>                                           ] 12  %[======>                                           ] 13  %[=======>                                          ] 14  %[=======>                                          ] 15  %[========>                                         ] 16  %[========>                                         ] 17  %[=========>                                        ] 18  %[=========>                                        ] 19  %[==========>                                       ] 20  %[==========>                                       ] 21  %[===========>                                      ] 22  %[===========>                                      ] 23  %[============>                                     ] 24  %[============>                                     ] 25  %[=============>                                    ] 26  %[=============>                                    ] 27  %[==============>                                   ] 28  %[==============>                                   ] 29  %[===============>                                  ] 30  %[===============>                                  ] 31  %[================>                                 ] 32  %[================>                                 ] 33  %[=================>                                ] 34  %[=================>                                ] 35  %[==================>                               ] 36  %[==================>                               ] 37  %[===================>                              ] 38  %[===================>                              ] 39  %[====================>                             ] 40  %[====================>                             ] 41  %[=====================>                            ] 42  %[=====================>                            ] 43  %[======================>                           ] 44  %[======================>                           ] 45  %[=======================>                          ] 46  %[=======================>                          ] 47  %[========================>                         ] 48  %[========================>                         ] 49  %[=========================>                        ] 50  %[=========================>                        ] 51  %[==========================>                       ] 52  %[==========================>                       ] 53  %[===========================>                      ] 54  %[===========================>                      ] 55  %[============================>                     ] 56  %[============================>                     ] 57  %[=============================>                    ] 58  %[=============================>                    ] 59  %[==============================>                   ] 60  %[==============================>                   ] 61  %[===============================>                  ] 62  %[===============================>                  ] 63  %[================================>                 ] 64  %[================================>                 ] 65  %[=================================>                ] 66  %[=================================>                ] 67  %[==================================>               ] 68  %[==================================>               ] 69  %[===================================>              ] 70  %[===================================>              ] 71  %[====================================>             ] 72  %[====================================>             ] 73  %[=====================================>            ] 74  %[=====================================>            ] 75  %[======================================>           ] 76  %[======================================>           ] 77  %[=======================================>          ] 78  %[=======================================>          ] 79  %[========================================>         ] 80  %[========================================>         ] 81  %[=========================================>        ] 82  %[=========================================>        ] 83  %[==========================================>       ] 84  %[==========================================>       ] 85  %[===========================================>      ] 86  %[===========================================>      ] 87  %[============================================>     ] 88  %[============================================>     ] 89  %[=============================================>    ] 90  %[=============================================>    ] 91  %[==============================================>   ] 92  %[==============================================>   ] 93  %[===============================================>  ] 94  %[===============================================>  ] 95  %[================================================> ] 96  %[================================================> ] 97  %[=================================================>] 98  %[=================================================>] 99  %[==================================================] 100 %
+Reading EEPROM (this operation may take up to 30 seconds)
 
-querygmac                [<filename>]                                                                  Display GMAC MCU firmware (AI) version
-                                                                                                       (if no filename, acts on GMAC MCU device).
-                                                                                                       
-listgpuled                                                                                             List all the GPU LED Lighting MCUs.
-proggpuled               <filename>                                                                    Flash GPU LED Lighting MCU firmware (AI).
-querygpuled              <filename>                                                                    Display GPU LED Lighting MCU FW (AI) version
-                                                                                                       (if no filename, acts on GPU LED Lighting MCU).
-                                                                                                       
-savegpuled               <filename>                                                                    Read GPU LED Lighting MCU firmware (AI)
-                                                                                                       and save to <filename>.
-                                                                                                       
-rdciegpuled              <filename>                                                                    Read CIE data from GPU LED Lighting MCUand save to <filename>.
-wrciegpuled              <filename>                                                                    Write CIE data to GPU LED Lighting MCU.
-calibrategpuled          [millisecond]                                                                 Calibrate GPU LED clock tick.
-listbridgeled                                                                                          List all the bridge LED Lighting MCUs.
-progbridgeled            <filename>                                                                    Flash bridge LED Lighting MCU firmware (AI).
-querybridgeled           <filename>                                                                    Display bridge LED Lighting MCU FW (AI) version
-                                                                                                       (if no filename, acts on LED Lighting MCU).
-                                                                                                       
-savebridgeled            <filename>                                                                    Read GPU LED Lighting MCU firmware (AI)
-                                                                                                       and save to <filename>.
-                                                                                                       
-wrpersrgb                <R1>:<G1>:<B1>:<R2>:<G2>:<B2>                                                 Write persistent-RGB color in hex to MCU.
-rdciebridgeled           <filename>                                                                    Read CIE data from bridge LED Lighting MCU
-                                                                                                       and save to <filename>.
-Press 'Enter' to continue, or 'Q' to quit.
+                                                          Reading EEPROM (this operation may take up to 30 seconds)
 
-wrciebridgeled           <filename>                                                                    Write CIE data to bridge LED Lighting MCU.
-calibratebridgeled       [millisecond]                                                                 Calibrate bridge LED clock tick.
-rdbridgeid               <filename>                                                                    Read bridge ID ROM data from bridge board
-                                                                                                       and save to <filename>.
-wrbridgeid               <filename>                                                                    Write bridge ID ROM data to bridge board.
-buildinfo                                                                                              Display tool building information.
-display                d [bytes]                                                                       Display 256 the first bytes of the EEPROM
-                                                                                                       (default is 256 bytes).
-                                                                                                       
-offset                   [start]                                                                       Used to assign start address to offset. Ex- 0x10
-                                                                                                       
-string                                                                                                 Display only the ASCII values of the EEPROM
-                                                                                                       
-createlic                                                                                              Create the License placeholder.
-updateuefi             u <filename>                                                                    Update only the UEFI portion of the ROM 
-                                                                                                       image from <filename>.
-                                                                                                       
-updatexusb               <filename>                                                                    Update only the XUSB portion of the ROM 
-                                                                                                       image from <filename>.
-                                                                                                       
-fullrecovery             [foldername]                                                                  Auto full recovery ROM from the backups.
-romout                   <filename>                                                                    Write ROM to file instead of physical ROM.
-hwid                                                                                                   Display hardware identifiers
-Press 'Enter' to continue, or 'Q' to quit.
+                                                          
+A reboot is required for the update to take effect.
 
-reset                    <type>                                                                        Reset GPU
-queryrtu                                                                                               Display RTU information.
-setmig                   <enable|disable>                                                              Enable or disable MIG mode
-setecc                   <enable|disable>                                                              Enable or disable ECC mode
-gpumode                  [mode name]                                                                   Set the GPU mode.< Argument usage:
-   Mode name : physical_display_enabled_256MB_bar1
-               physical_display_disabled
-               physical_display_enabled_8GB_bar1
-                                                                                                       
-listgpumodes                                                                                           List the GPU mode of all NVIDIA adapters in the system.
-addpp                    <policy> attr V                                                               Add a power policy. See '--help pp' for more details.
-delpp                    <policy> attr                                                                 Delete a power policy. See '--help pp' for more details.
-listpp                                                                                                 List all current power policies. See '--help pp' for more details.
-addtgpapp                <profileId> fbRailPwrmW otherRailPwrmW firstWorkloadParam secondWorkloadParam Add a TGP app profile. See '--help app' for more details.
-delapp                   <profileId>                                                                   Delete an app profile. See '--help app' for more details.
-listapp                                                                                                List all current app profiles. See '--help app' for more details.
-repairfs                                                                                               Repair broken InfoROM file System.
-flashinforom             <filename>                                                                    Flash InfoROM with data from <filename>.
-backupinforom                                                                                          Backup InfoROM data to the embedded recovery
-                                                                                                       image.
-                                                                                                       
-recoverinforom         R                                                                               Restore InfoROM from embedded recovery image.
-sanitizefs               <filename>.rom                                                                Flash sanitized InfoROM filesystem.
-Press 'Enter' to continue, or 'Q' to quit.
-
-licflash                 <filename>                                                                    Flash a license file.
-lichelp                                                                                                Display help screen for license operations.
-rdhlk                    <filename>                                                                    Read HULK license file object to file.
-wrhlk                    <filename>                                                                    Install unlock license into EEPROM.
-rdoem                    <filename>                                                                    Read OEM object to <filename>.
-wroem                    <filename>                                                                    Write OEM object from <filename> to Inforom.
-rdulf                    <filename>                                                                    Read uGPU license file object to file.
-wrulf                    <filename>                                                                    Write uGPU license file object from file to Inforom.
-rdupr                    <filename>                                                                    Read uGPU Personality Request object to file.
-wrupr                    <filename>                                                                    Write uGPU Personality Request from file to Inforom.
-rdobd                    <filename> [csv]                                                              Read OBD object to <filename> with optional csv format.
-rmhlk                                                                                                  Erase contents of the HULK object
-elsessionstart           <limit>                                                                       Start an erase ledger session
-elsessionquery                                                                                         Query erase ledger session
-elsessionclear                                                                                         Clear erase ledger session
-wrccc                    <filename>                                                                    Install device certificate into EEPROM.
-rdccc                    <filename>                                                                    Read device certificate from EEPROM.
-verifyccc                                                                                              Verify device certificate stored in EEPROM.
-setccm                   <enable|disable>                                                              Enable or disable Confidential Computing mode
-setccd                   <enable|disable>                                                              Enable or disable Confidential Computing Development mode
-rdccm                                                                                                  Read Confidential Computing mode
-overrideaddrid                                                                                         Allow the addressing ID mismatch
-                                                                                                       
-Press 'Enter' to continue, or 'Q' to quit.
-
-overridesysid                                                                                          Allow the system ID mismatch
-                                                                                                       
-overriderefdes                                                                                         Allow the reference designator mismatch
-                                                                                                       
-skipmcuidchecks                                                                                        Allow to skip the IDs mismatch when flash MCU to an non-generic image.
-offsysbridgefilter                                                                                     Turn off system bridge device filtering.
-offnvlinkswfilter                                                                                      Turn off nvlink switch device filtering
-outfilepath              <output path>                                                                 Specify the location where the output file
-                                                                                                       should be saved. Works only with commands
-                                                                                                       '--gpumode' and '--listgpumodes'.
-mergeinforom                                                                                           Merge InfoROM block if required.
-force_preserve_inforom                                                                                 Force preserve InfoROM block from the existing firmware
-reallocateglob                                                                                         Force reallocate InfoROM glob offset according to target image for flashing
-bpaligninforom                                                                                         Align InfoROM on a block protection boundary.
-reboot                 y                                                                               Reboot the PC after other tasks completed.
-filterdevid            f <value>[,<mask>]                                                              Filter device list by device ID and optional
-                                                                                                       mask.
-                                                                                                       
-reversefilterid        U <value>                                                                       Remove item from the device ID list if
-                                                                                                       specified device ID is matched.
-                                                                                                       
-upgradeonly                                                                                            Only allow upgrading of firmware based on
-                                                                                                       version.
-                                                                                                       
-Press 'Enter' to continue, or 'Q' to quit.
-
-nodowngrade                                                                                            Allow sidegrading and upgrading of firmware version.
-allowdowngrade                                                                                         Permit a downgrade of firmware 
-                                                                                                       if it defaults not permit a downgrade of firmware
-overridesub            6                                                                               Allow firmware and adapter PCI subsystem ID
-                                                                                                       mismatch.
-                                                                                                       
-index                  i <index>                                                                       Force a specific device index.
-osfpindex                <index>                                                                       Force specific osfp device index(s)
-pcisegbus              B [<seg#>:]<bus#>:                                                              Select a specific device by using a specified
-                                                                                                       segment# and bus#. The following format
-                                                                                                       is allowed, <seg#>:<bus#>:<dev#>.<func#>.
-                                                                                                       All numbers are hexadecimal. The segment#
-                                                                                                       can be optional, and has a default value(0)
-                                                                                                       if no input value.The dev# and the func# 
-                                                                                                       can be omitted for the --pcisegbus command.
-auto                   A                                                                               When possible, execute the specified command
-                                                                                                       without user intervention.
-silence                s                                                                               Silence all audio beeps.
-beep                   !                                                                               Beep to signal updating progress.
-nolight                l                                                                               Do not light keyboard LEDs.
-Press 'Enter' to continue, or 'Q' to quit.
-
-override               o <level>                                                                       Override safety check level:
-   default  unknown EEPROM | NV adapter aborts application.
-   level=1  unknown EEPROM acceptable for read operations.
-   level=2  unknown NV adapter acceptable for read operations.
-   level=3  Combined effect of 1,2 (cannot write to unknown EEPROM or adapter).
-                                                                                                       
-log                    L <log file>                                                                    Create a log file in truncat mode ( or add option --append in append mode )
-nopowerchk             p                                                                               Skip power level check.
-offswdriver            S                                                                               Turn off automatic switch driver state.
-append                                                                                                 Write log file in append mode.
-guidcheck                <GUID>                                                                        Check if Build GUID match with VBIOS image
-                                                                                                       before proceeding.
-fullbackup               [foldername]                                                                  Backup the existing ROM from display
-                                                                                                       adapter prior to flash.
-ignoreinforom                                                                                          Ignore InfoROM operation.
-ignorebootblock                                                                                        Ignore bootblock operation.
-gmacinvalid                                                                                            Allow to flash the invalid data to MCU.
-json                   J                                                                               Display Json format data
-matchversion                                                                                           Match exact VBIOS version string
-matchsessionid                                                                                         Match VBIOS session ID
-offvfvantirollback                                                                                     Permit a downgrade of vbios version older than OBD Vbios Factory Version 
-                                                                                                       if OBD Vbios Factory Version is already populated
-reset_after_update                                                                                     Reset occurs after successful flash.
-
-Use a single dash ("-") to use the single letter version of a command.
-Use a double dash ("--") to use the longer descriptive version of a command.
-Use equals ("=") to specify parameters, with separating commas (",").
-
--- Sample Usage --
-nvflash --index=1 nv30nz.rom
-Press 'Enter' to continue, or 'Q' to quit.
-
--- Supported EEPROM's --
-Atmel      AT24CM02 2048Kx1S     1.7-5.5V, 256B page,  4k blk, ID=(00,10F5)
-   ST      STM24C02    2Kx1S     1.7-5.5V,   8B page,  0k blk, ID=(00,FFFF)
-  AMD    AM29LV001B  128Kx8         2.7vV,   1B page, 16k blk, ID=(01,006D)
-  AMD     AM29LV010  128Kx8         2.7vV,   1B page, 16k blk, ID=(01,006E)
-  AMD    AM29LV001T  128Kx8         2.7vV,   1B page, 16k blk, ID=(01,00ED)
-   CY     S25FS064S 65536Kx1S   1.65-1.95V, 256B page, 64k blk, ID=(01,0217)
-   CY     S25FL208K 8192Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(01,4014)
-Atmel      AT49F512   64Kx8  5.0,3.0,2.7V,   1B page,  0k blk, ID=(1F,0003)
-Atmel     AT49F001T  128Kx8          5.0V,   1B page,  0k blk, ID=(1F,0004)
-Atmel      AT49F001  128Kx8          5.0V,   1B page,  0k blk, ID=(1F,0005)
-Atmel  AT49BV/LV010  128Kx8      2.7-3.6V,   1B page,  0k blk, ID=(1F,0017)
-Atmel AT29LV/BV010A  128Kx8          3.0V, 128B page,  0k blk, ID=(1F,0035)
-Atmel     AT29LV512   64Kx8          3.0V, 128B page,  0k blk, ID=(1F,003D)
-Atmel     AT25F1024 1024Kx1S     2.7-3.6V, 256B page, 32k blk, ID=(1F,0040)
-Atmel      AT29C512   64Kx8          5.0V, 128B page,  0k blk, ID=(1F,005D)
-Atmel     AT25F1024 1024Kx1S     2.7-3.6V, 256B page, 32k blk, ID=(1F,0060)
-Atmel     AT25F2048 2048Kx1S     2.7-3.6V, 256B page, 64k blk, ID=(1F,0063)
-Atmel      AT25F512  512Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(1F,0065)
-Atmel      AT49F010  128Kx8          5.0V,   1B page,  0k blk, ID=(1F,0087)
-Atmel     AT29C010A  128Kx8          5.0V, 128B page,  0k blk, ID=(1F,00D5)
-Atmel     AT25DF021 2048Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,4300)
-Adest    AT25DF021A 2048Kx1S    1.65-3.6V, 256B page,  4k blk, ID=(1F,4301)
-Press 'Enter' to continue, or 'Q' to quit.
-
-Atmel     AT25DF041 4096Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,4401)
-Adest    AT25DF041B 4096Kx1S    1.65-3.6V, 256B page,  4k blk, ID=(1F,4402)
-Adest     AT25DL081 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(1F,4502)
-Adest     AT25DF161 16384Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,4602)
-Atmel     AT25FS010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(1F,6601)
-Atmel     AT25SF041 4096Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(1F,8401)
-   ST        M25P05  512Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(20,0005)
-   ST        M25P10 1024Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(20,0010)
-   ST      M29W512B   64Kx8      2.7-3.6V,   1B page,  0k blk, ID=(20,0027)
-  Num      M25P10-A 1024Kx1S     2.3-3.6V, 256B page, 32k blk, ID=(20,2011)
-  Num        M25P20 2048Kx1S     2.3-3.6V, 256B page, 64k blk, ID=(20,2012)
-   MU   N25Q016A11E 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(20,BB15)
- AMIC       A25L512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3010)
- AMIC       A25L010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3011)
- AMIC       A25L020 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3012)
- AMIC       A25L040 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(37,3013)
-   ST      M95256-D  256Kx1S     1.7-5.5V,  64B page,  4k blk, ID=(47,8725)
-uChip      25AA320A    4Kx8S     1.8-5.5V,  32B page,  0k blk, ID=(47,8747)
-   MX   MX25U12835F 1024Kx1S   1.65-2.05V, 256B page,  4k blk, ID=(47,8800)
-   MX   MX25U12835F 8192Kx1S   1.65-2.05V, 256B page,  4k blk, ID=(47,8801)
-   ON CAT25256-512/STM95512  256Kx1S     1.8-5.5V,  64B page,  4k blk, ID=(47,9700)
- XLNX XCF128XFTG64C 8192Kx16 9.5,8.5,2.0,1.7V,   8B page, 128k blk, ID=(49,016B)
- Tenx      ICE25P05  512Kx1S     2.7-3.6V, 128B page, 32k blk, ID=(5E,0001)
-  PMC     Pm25LD512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D20)
-Press 'Enter' to continue, or 'Q' to quit.
-
-  PMC     Pm25LD010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D21)
-  PMC     Pm25LD020 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D22)
-  PMC     Pm25LQ020 2048Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(7F,9D42)
-  PMC     Pm25LQ040 4096Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(7F,9D43)
-  PMC     Pm25LV020 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D7D)
-  PMC     Pm25LV040 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(7F,9D7E)
- PUYA       P25Q40L 4096Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6013)
- PUYA       P25Q80L 8192Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6014)
- PUYA       P25Q16L 16384Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6015)
- PUYA      P25Q32SL 32768Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6016)
- PUYA     PY25R32LB 32768Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6316)
- PUYA     PY25Q32LC 32768Kx1S      1.65-2V, 256B page,  4k blk, ID=(85,6516)
-  PMC     Pm39LV512   64Kx8      3.0-3.6V,   1B page,  4k blk, ID=(9D,001B)
-  PMC     Pm39LV010  128Kx8      3.0-3.6V,   1B page,  4k blk, ID=(9D,001C)
-  PMC     Pm25LV512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(9D,007B)
-  PMC     Pm25LV010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(9D,007C)
- ISSI     IS25WQ020 2048Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,1152)
- ISSI     IS25WQ040 4096Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,1253)
- ISSI     IS25WP040 4096Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7013)
- ISSI     IS25WP080 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7014)
- ISSI    IS25WP016D 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7015)
- ISSI IS25WP032/J032F 32768Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7016)
- ISSI    IS25WP128F 131072Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7018)
- ISSI IS25WP256D/FHLE 262144Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(9D,7019)
-Press 'Enter' to continue, or 'Q' to quit.
-
-   FM       FM25F02 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(A1,3112)
-   FM       FM25F04 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(A1,3113)
-  SST    SST29EE010  128Kx8          5.0V, 128B page,  0k blk, ID=(BF,0007)
-  SST SST29LE/VE010  128Kx8      2.9,2.7V, 128B page,  0k blk, ID=(BF,0008)
-  SST SST29LE/VE512   64Kx8      2.9,2.7V, 128B page,  0k blk, ID=(BF,003D)
-  SST    SST45VF010 1024Kx1S     3.0-3.6V,   1B page,  4k blk, ID=(BF,0042)
-  SST    SST25LF020 2048Kx1S     3.0-3.6V, 256B page,  4k blk, ID=(BF,0043)
-  SST    SST25LF040 4096Kx1S     3.0-3.6V, 256B page,  4k blk, ID=(BF,0044)
-  SST    SST25VF512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(BF,0048)
-  SST    SST25VF010 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(BF,0049)
-  SST    SST29EE512   64Kx8          5.0V, 128B page,  0k blk, ID=(BF,005D)
-  SST    SST39SF010  128Kx8          5.0V,   1B page,  4k blk, ID=(BF,00B5)
-  SST    SST39VF512   64Kx8      2.7-3.6V,   1B page,  4k blk, ID=(BF,00D4)
-  SST    SST39VF010  128Kx8      2.7-3.6V,   1B page,  4k blk, ID=(BF,00D5)
-  SST   SST25VF020B 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(BF,258C)
-uChip  SST26WF080BT 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(BF,2658)
-   MX     MX29F001T  128Kx8          5.0V,   1B page,  0k blk, ID=(C2,0018)
-   MX     MX29F001B  128Kx8          5.0V,   1B page,  0k blk, ID=(C2,0019)
-   MX      MX25L512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2010)
-   MX     MX25L1005 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2011)
-   MX     MX25L2005 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2012)
-   MX    MX25L4005A 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2013)
-   MX    MX25L8073E 8192Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C2,2014)
-   MX    MX25U2033E 2048Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2532)
-Press 'Enter' to continue, or 'Q' to quit.
-
-   MX    MX25U4033E 4096Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2533)
-   MX MX25U8033E-MX25U8035F 8192Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2534)
-   MX    MX25U1635F 16384Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2535)
-   MX    MX25U3232F 32768Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2536)
-   MX   MX25U25645G 262144Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,2539)
-   MX   MX25U51245G 524288Kx1S    1.65-2.0V, 256B page,  4k blk, ID=(C2,253A)
-   GD      GD25Q512  512Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4010)
-   GD       GD25Q10 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4011)
-   GD       GD25Q20 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4012)
-   GD       GD25Q40 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(C8,4013)
-   GD     GD25LQ20B 2048Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6012)
-   GD     GD25LQ40B 4096Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6013)
-   GD   GD25LQ80B/E 8192Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6014)
-   GD     GD25LQ16E 16384Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6015)
-   GD     GD25LQ32E 32768Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6016)
-   GD     GD25LR64E 65536Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6017)
-   GD    GD25LR128E 131072Kx1S   1.65-2.00V, 256B page,  4k blk, ID=(C8,6018)
-WBond       W39L010  128Kx8          3.3V,   1B page,  4k blk, ID=(DA,0031)
-WBond       W39L512   64Kx8          3.3V,   1B page,  4k blk, ID=(DA,0038)
-WBond      W29C011A  128Kx8          5.0V, 128B page,  0k blk, ID=(DA,00C1)
-WBond      W29EE512   64Kx8          5.0V, 128B page,  0k blk, ID=(DA,00C8)
-WBond      W25X05CL  512Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(EF,3010)
-WBond       W25X10A 1024Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3011)
-WBond       W25X20A 2048Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3012)
-Press 'Enter' to continue, or 'Q' to quit.
-
-WBond       W25X40A 4096Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3013)
-WBond       W25X80A 8192Kx1S     2.7-3.6V, 256B page,  4k blk, ID=(EF,3014)
-WBond      W25Q80BV 8192Kx1S     2.3-3.6V, 256B page,  4k blk, ID=(EF,4014)
-WBond      W25Q20EW 2048Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6012)
-WBond      W25Q40EW 4096Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6013)
-WBond      W25Q80EW 8192Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6014)
-WBond   W25Q16FW/JW 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6015)
-WBond      W25Q32JW 32768Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6016)
-WBond      W25R64JW 65536Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6017)
-WBond  W25R128JWPIQ 131072Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6018)
-WBond     W25Q256JW 262144Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,6019)
-WBond  W25Q16JWXHIM 16384Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,8015)
-WBond     W25Q32JW  32768Kx1S   1.65-1.95V, 256B page,  4k blk, ID=(EF,8016)
--- Sample Usage --
-
-  Create unlock license request file.
-  > nvflash --licreq=LicenseRequest.bin USER_FW_MOD
-
-  Install unlock license objects.
-  > nvflash --wrhlk=License.hulk
-
-  Flash tweaked firmware.
-  > nvflash --license=License.hulk vbios.rom
-
-    Flash exit status: 5
+    Flash exit status: 0
 [7] Read-back verification...
 NVIDIA Firmware Update Utility (Version 5.867.0)
 Copyright (C) 1993-2024, NVIDIA Corporation. All rights reserved.
 
 Reading EEPROM (this operation may take up to 30 seconds)
 
-                                                          Build GUID            : C3AB231BF6B54E309B38960651042158
+                                                          Build GUID            : 36762E5D66904B30A099C58D53966BF5
 Build Number          : 29236791
 IFR Subsystem ID      : 1043-87B0
 Subsystem Vendor ID   : 0x1043
 Subsystem ID          : 0x87B0
-Version               : 94.02.42.40.65
+Version               : 94.02.42.40.66
 Image Hash            : N/A
 Hierarchy ID          : Normal Board
 Build Date            : 10/23/20
-Modification Date     : 11/26/20
+Modification Date     : 03/10/21
 UEFI Version          : 0x60009 ( x64 )
 UEFI Variant ID       : 0x000000000000000A ( GA1xx )
 UEFI Signer(s)        : Microsoft Corporation UEFI CA 2011
@@ -1284,13 +99,13 @@ CEC OTA-signed Blob   : Not Present
     nvidia-persistenced + gpu-watchdog started
 [10] Restarting LightDM...
 [11] Done.
-FAILED: nvflash exited with status 5 — VBIOS was NOT changed.
-Backup is safe at: /home/jeb/vbios-work/3080-backup-pre-rebar.rom
+SUCCESS: ROM flashed.
+REBOOT REQUIRED — BAR1 change takes effect after reboot.
+After reboot verify: nvidia-smi -q -i 1 | grep -A3 'BAR1'
+Expected: Total = 8192 MiB (8 GiB)
 
-Possible causes:
-  - ROM subsystem mismatch (try AS03.rom as alternative)
-  - nvflash version incompatible with this VBIOS
-  - Hardware write-protect enabled (check GPU dipswitch)
+To restore original VBIOS if needed:
+  sudo /home/jeb/vbios-work/x64/nvflash -i 1 /home/jeb/vbios-work/3080-backup-pre-rebar.rom
 ========================================================
-  End Sun May 17 10:52:31 AM CDT 2026
+  End Sun May 17 11:41:45 AM CDT 2026
 ========================================================

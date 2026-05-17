@@ -11,7 +11,7 @@ BACKUP=$WORKDIR/3080-backup-pre-rebar.rom
 LOG=$WORKDIR/flash-session.log
 GPU_IDX=1
 
-ROM="${1:-$WORKDIR/94.02.42.40.AS02.rom}"
+ROM="${1:-$WORKDIR/v6-extracted/94.02.42.40.AS02.rom}"
 
 exec > >(tee -a "$LOG") 2>&1
 echo ""
@@ -155,20 +155,19 @@ fi
 # ---------------------------------------------------------------------------
 echo "[5] Checking ROM compatibility..."
 echo "    ROM size: $(stat -c%s "$ROM") bytes"
-# --check may return non-zero on subsystem mismatch even when flashable with --force flags.
-# Capture output to surface the reason; we proceed to the flash step either way.
+# Capture output to surface any mismatch; we proceed to the flash step either way.
 CHECK_OUT=$($NVFLASH -i $GPU_IDX --check "$ROM" 2>&1)
 CHECK_STATUS=$?
 echo "$CHECK_OUT"
 echo "    check exit status: $CHECK_STATUS"
 
 # ---------------------------------------------------------------------------
-# [6] Flash ROM — use --force-subsystem-id and --force-board-id in case the
-#     ROM's subsystem ID differs from this ASUS card (1043:87B0).
-#     nvflash 5.867 write syntax: nvflash [options] <filename>  (no -6 flag)
-#     First run --protectoff to clear any firmware write-protect bits.
-#     nvflash opens /dev/console directly for confirmation; 'yes |' does not
-#     work. Use expect to drive the interactive prompts via a pseudo-TTY.
+# [6] Flash ROM — nvflash 5.867 Linux: NO force flags exist. Pass only the
+#     ROM filename; nvflash checks subsystem ID and prompts y/n if it matches.
+#     AS02 subsystem (1043:87B0) matches the card so no override is needed.
+#     --force-subsystem-id/--force-board-id are Windows-only flags.
+#     --forcesub/--forceboard also cause "Command format not recognized".
+#     nvflash opens /dev/console directly; use expect to drive the TTY.
 # ---------------------------------------------------------------------------
 echo "[5b] Removing firmware write-protect (--protectoff)..."
 expect -c "
@@ -190,7 +189,7 @@ echo "[6] Flashing ROM to GPU $GPU_IDX..."
 echo "    *** Do NOT interrupt — takes ~30 seconds ***"
 expect -c "
     set timeout 120
-    spawn $NVFLASH -i $GPU_IDX --force-subsystem-id --force-board-id {$ROM}
+    spawn $NVFLASH -i $GPU_IDX {$ROM}
     expect {
         -re {[Yy]/[Nn]}  { send \"y\r\"; exp_continue }
         -re {Press.*Enter} { send \"\r\"; exp_continue }
@@ -253,7 +252,7 @@ if [ $FLASH_STATUS -eq 0 ]; then
     echo "Expected: Total = 8192 MiB (8 GiB)"
     echo ""
     echo "To restore original VBIOS if needed:"
-    echo "  sudo $NVFLASH -i $GPU_IDX --force-subsystem-id --force-board-id $BACKUP"
+    echo "  sudo $NVFLASH -i $GPU_IDX $BACKUP"
 else
     echo "FAILED: nvflash exited with status $FLASH_STATUS — VBIOS was NOT changed."
     echo "Backup is safe at: $BACKUP"
