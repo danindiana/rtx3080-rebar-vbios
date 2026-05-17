@@ -18,6 +18,7 @@
 - [Recovery Plan](#recovery-plan)
 - [Diagrams](#diagrams)
 - [File Inventory](#file-inventory)
+- [Analysis: ReBAR Speedup Model](analysis/rebar-speedup-model.md)
 
 ---
 
