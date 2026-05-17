@@ -78,11 +78,17 @@ by the GPU internally; only the CPU-visible window is bounded by the BAR.
 
 ### Performance implications for multi-GPU inference (Ollama)
 
-When Ollama loads a model across two GPUs (RTX 5080 + RTX 3080), the runtime needs to
-move activations and KV-cache entries between them over PCIe. With a 256 MiB BAR1 on the
-3080, the driver must page VRAM in 256 MiB chunks when the CPU needs to access more than
-that at once. With an 8 GiB BAR1, entire model layers fit in the BAR window, dramatically
-reducing the number of round-trips and enabling CUDA Peer-to-Peer (P2P) access.
+When Ollama loads a model across two GPUs (RTX 5080 + RTX 3080), the runtime may need to
+move activations, KV-cache entries, and layer state across the PCIe fabric.
+
+ReBAR expands the CPU-addressable window into VRAM from 256 MiB to 8192 MiB, reducing
+remapping pressure for large transfers. It is not equivalent to CUDA Peer-to-Peer access,
+which is a separate runtime capability gated on topology, NVLink/PCIe connectivity, and
+driver negotiation:
+
+    cudaDeviceCanAccessPeer(&canAccess, deviceA, deviceB);
+
+ReBAR improves the memory-mapping situation. It does not, by itself, guarantee CUDA P2P.
 
 ---
 
@@ -215,10 +221,35 @@ two are valid for the TUF-RTX3080-10G-GAMING (subsystem `1043:87B0`):
 | AS08 | `1043:87EB` | — | TURBO-RTX3080 | **Wrong card. Do not flash.** |
 | AS09 | `1043:87EB` | — | TURBO-RTX3080 | **Wrong card. Do not flash.** |
 
-> **Important:** `.66` and `.65` are variant/stepping codes, not sequential version numbers.
-> AS02 (`.66`) is the newer build despite appearing to have a higher "version" — confirmed
-> by build number `29236791` vs AS03's lower build number, and by `BIOS_Compare.ini` in
-> the package which shows no outbound upgrade path from AS03 for the `87B0` PCB.
+> **Important:** Neither the displayed decimal suffix nor the ASUS `ASxx` number is
+> globally monotonic across the ROM set.
+>
+> For this specific `1043:87B0` TUF PCB, AS02 displays as `.66` and AS03 displays as `.65`.
+> AS02 is the preferred V6 target, while AS03 is a valid fallback — but this conclusion comes
+> from the ROM metadata and package comparison table, not from assuming `.66 > .65` or
+> `AS03 > AS02`.
+>
+> Across the full package, AS08/AS09 have higher AS numbers but belong to the Turbo
+> `1043:87EB` branch and must not be flashed to the TUF `87B0` card.
+
+> [!IMPORTANT]
+> **ROM selection invariant**
+>
+> Do not trust the displayed version suffix.
+> Do not trust the AS-series number order.
+> Do not trust ROM filenames or package names.
+>
+> Trust only:
+>
+> - Subsystem ID: must be `1043:87B0`
+> - Power target: must be `340 W`, not `320 W`
+> - Boost clock: must be `1785 MHz`, not `1710 MHz`
+> - `nvflash --check`: must report no subsystem mismatch
+>
+> The safe comparator is not `.65` vs `.66`, and not `AS02` vs `AS03`.
+> The safe comparator is:
+>
+>     subsystem + board family + power target + boost clock + nvflash check
 
 See [diagram 05](diagrams/05_rom_selection.svg) for the full decision tree.
 
@@ -321,6 +352,48 @@ BAR 1: current size: 256MB, supported: 64MB 128MB 256MB
 
 A reboot is required for the UEFI firmware to read the new VBIOS's ReBAR capability and
 assign an expanded BAR1 window.
+
+### Post-reboot BAR1 verification
+
+After reboot, the firmware re-reads the updated VBIOS and assigns the larger BAR1 aperture.
+
+Before reboot, immediately after flash (confirmed above):
+
+```
+BAR1 Memory Usage
+    Total   : 256 MiB
+    Used    : 19 MiB
+    Free    : 237 MiB
+```
+
+After reboot (expected):
+
+```bash
+$ nvidia-smi -q -i 1 | grep -A3 "BAR1 Memory Usage"
+
+BAR1 Memory Usage
+    Total   : 8192 MiB
+    Used    : <observed> MiB
+    Free    : <observed> MiB
+
+$ sudo lspci -vvv -s 0f:00.0 | grep -A5 "Resizable BAR"
+
+BAR 1: current size: 8192MB, supported: 64MB 128MB 256MB ... 8192MB
+```
+
+Capture command to record both at once:
+
+```bash
+{
+  echo "=== nvidia-smi BAR1 ==="
+  nvidia-smi -q -i 1 | sed -n '/BAR1 Memory Usage/,+3p'
+  echo
+  echo "=== lspci Resizable BAR ==="
+  sudo lspci -vvv -s 0f:00.0 | grep -A8 "Resizable BAR"
+} | tee post-reboot-rebar-verification.txt
+```
+
+*Update the `<observed>` placeholders above with the actual output once the reboot completes.*
 
 ---
 
