@@ -1,0 +1,83 @@
+digraph rom_selection {
+    graph [
+        label="VBIOS ROM Selection Decision Tree\nASUS TUF-RTX3080 V6 Package — Correct Target Identification"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        splines=ortho
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.7
+        nodesep=0.8
+        ranksep=0.7
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10]
+
+    // Start: identify card
+    start [label="Identify your RTX 3080\nlspci -vv -s 0f:00.0 | grep -i subsystem\nnvidia-smi --query-gpu=vbios_version --format=csv,noheader --id=1"
+           fillcolor="#003366" fontcolor=white shape=oval]
+
+    // Subsystem check
+    subsystem_check [label="Subsystem ID?" fillcolor="#1a1a3a" fontcolor=white shape=diamond]
+
+    // Wrong path
+    subsystem_wrong [label="Subsystem ≠ 1043:87B0\n(Not a TUF-RTX3080-10G-GAMING)\n\nExamples:\n• 1043:87EB = TURBO-RTX3080\n• 3842:2480 = EVGA RTX 3080\n• 10DE:xxxx = Founders Edition"
+                     fillcolor="#330000" fontcolor="#ff6666" shape=box]
+    wrong_stop [label="STOP — Do NOT use these ROMs\nFind VBIOS for YOUR exact card\nat techpowerup.com/vgabios/" fillcolor="#440000" fontcolor="#ff4444" shape=octagon]
+
+    // Correct subsystem
+    subsystem_ok [label="Subsystem = 1043:87B0\n✓ ASUSTeK TUF-RTX3080-O10G-GAMING" fillcolor="#003300" fontcolor="#88ff88"]
+
+    // ROM candidates in V6 package
+    v6_package [label="ASUS V6 Package (2023-10-18)\nExtracted via: 7z x RTX3080_V6.exe -ov6-extracted\n\nContains 4 ROM candidates:\nAS02, AS03, AS08, AS09" fillcolor="#222233" fontcolor="#aaaacc"]
+
+    // AS08/AS09 check
+    as08 [label="AS08: 10DE:2206 / 1043:87EB\nTURBO-RTX3080\n(different PCB, different cooler)" fillcolor="#440000" fontcolor="#ff6666"]
+    as09 [label="AS09: 10DE:2206 / 1043:87EB\nTURBO-RTX3080\n(same wrong variant)" fillcolor="#440000" fontcolor="#ff6666"]
+    wrong_as [label="WRONG CARD — Do NOT flash\nSubsystem EB ≠ B0" fillcolor="#550000" fontcolor="#ff4444" shape=octagon]
+
+    // AS02 / AS03 detail
+    as02 [label="AS02\nVersion: 94.02.42.40.66\nSubsystem: 1043:87B0 ✓\nBoard: TUF-RTX3080\nDate: 2021-03-10\nSize: ~1 MB\n\n★ RECOMMENDED TARGET ★\nNewer build number (29236791)\nThis is what we flashed" fillcolor="#004400" fontcolor="#00ff88" shape=box penwidth=3]
+
+    as03 [label="AS03\nVersion: 94.02.42.40.65\nSubsystem: 1043:87B0 ✓\nBoard: TUF-RTX3080\nDate: similar era\nSize: ~1 MB\n\nAlternate / fallback only\n(older build number)\n← We started here (interactive flash mishap)" fillcolor="#333300" fontcolor="#ffff66" shape=box]
+
+    // Version confusion note
+    version_note [label="⚠ Version number confusion:\n.66 and .65 are VARIANT codes, NOT sequential builds.\nAS02 (.66) is the NEWER build despite higher variant number.\nAS03 (.65) is slightly older for the same 87B0 PCB.\n\nBIOS_Compare.ini confirms: no outbound upgrade\nchain from AS03 for 87B0 — AS02 is the terminus." fillcolor="#222200" fontcolor="#ffee88" shape=note]
+
+    // Chain from pre-flash state
+    preflash [label="Pre-flash state\nnvflash --version output:\nVersion: 94.02.42.40.65\nSubsystem: 1043:87B0\n← AS03 (landed here via\n   interactive flash mishap)" fillcolor="#332200" fontcolor="#ffcc88"]
+
+    postflash [label="Post-flash state ✓\nnvflash --version output:\nVersion: 94.02.42.40.66\nSubsystem: 1043:87B0\n← AS02 (clean direct flash\n   with corrected flags)" fillcolor="#003300" fontcolor="#88ff88"]
+
+    // Interactive flash mishap
+    mishap [label="Interactive Flash Mishap\n(earlier sessions)\n\nRoot cause: used Windows-only flags:\n--force-subsystem-id --force-board-id\n\nnvflash 5.867 Linux: 'Command format not recognized'\n→ fell into interactive menu mode\n→ expect script navigated menus\n→ exit 5 from compatibility check\n→ resulted in .65 (AS03) instead of .66 (AS02)" fillcolor="#330011" fontcolor="#ff88aa" shape=note]
+
+    // Correct flags note
+    correct_flags [label="Correct Linux nvflash 5.867 syntax:\n\nnvflash -i 1 <rom_file.rom>\n\nNO force flags needed when subsystems match.\nVerified: strings nvflash | grep force\n→ no force flags exist in Linux binary" fillcolor="#002233" fontcolor="#88ccff" shape=note]
+
+    // Flow
+    start -> subsystem_check
+    subsystem_check -> subsystem_wrong [label="≠ 1043:87B0" color="#ff4444"]
+    subsystem_check -> subsystem_ok [label="= 1043:87B0" color="#00cc66"]
+    subsystem_wrong -> wrong_stop [color="#ff4444"]
+
+    subsystem_ok -> v6_package
+    v6_package -> as08 [color="#ff4444"]
+    v6_package -> as09 [color="#ff4444"]
+    v6_package -> as02 [color="#00cc66" penwidth=2]
+    v6_package -> as03 [color="#ffcc00"]
+    as08 -> wrong_as [color="#ff4444"]
+    as09 -> wrong_as [color="#ff4444"]
+
+    as03 -> version_note [color="#888800" style=dashed]
+    as02 -> version_note [color="#008800" style=dashed]
+
+    preflash -> mishap [color="#996600" style=dashed]
+    mishap -> as03 [label="landed here\nby accident" color="#996600" style=dashed]
+    as02 -> postflash [label="clean flash\n(this session)" color="#00cc66" penwidth=2]
+
+    as02 -> correct_flags [color="#008844" style=dashed]
+    correct_flags -> postflash [color="#008844" style=dashed]
+}

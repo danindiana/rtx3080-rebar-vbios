@@ -1,0 +1,99 @@
+digraph rebar_architecture {
+    graph [
+        label="Resizable BAR (ReBAR) Architecture\nHow BAR1 expansion enables full VRAM access"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=LR
+        splines=curved
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.6
+        nodesep=0.8
+        ranksep=1.2
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10]
+
+    // Left: CPU side
+    subgraph cluster_cpu_side {
+        label="CPU Address Space"
+        fontcolor=white
+        color="#334455"
+        style=filled
+        fillcolor="#0d1b2a"
+
+        cpu_core [label="CPU Core(s)\nAMD Ryzen 9 5950X" fillcolor="#1a3a5a" fontcolor=white shape=ellipse]
+        mmio [label="MMIO Window\n(BAR1 mapped\ninto CPU address space)" fillcolor="#1a3a5a" fontcolor=white]
+        cpu_core -> mmio [label="DMA / direct\nmemory access" color="#66aaff"]
+    }
+
+    // Middle: PCIe fabric
+    subgraph cluster_pcie {
+        label="PCIe Gen 4 x16 Fabric"
+        fontcolor=white
+        color="#445533"
+        style=filled
+        fillcolor="#1a2e0f"
+
+        pcie_bus [label="PCIe Bus\n16 GT/s per lane\nx16 = 32 GB/s each way" fillcolor="#2a4a1a" fontcolor=white shape=diamond]
+
+        subgraph cluster_before {
+            label="BEFORE ReBAR\n(Legacy fixed-size BAR)"
+            fontcolor="#ff6600"
+            color="#663300"
+            style=filled
+            fillcolor="#221100"
+
+            bar_old [label="BAR1 = 256 MiB\n(BIOS-assigned fixed window)\nOnly 2.5% of 10 GB VRAM\nvisible to CPU at a time" fillcolor="#442200" fontcolor="#ffaa66" shape=box]
+        }
+
+        subgraph cluster_after {
+            label="AFTER ReBAR\n(Resizable BAR active)"
+            fontcolor="#00cc66"
+            color="#336622"
+            style=filled
+            fillcolor="#112200"
+
+            bar_new [label="BAR1 = 8192 MiB\n(UEFI assigns full window)\n80%+ of 10 GB VRAM\ndirectly CPU-addressable" fillcolor="#224400" fontcolor="#88ff88" shape=box]
+        }
+    }
+
+    // Right: GPU side
+    subgraph cluster_gpu_side {
+        label="RTX 3080 (10 GB GDDR6X)"
+        fontcolor="#ffaa00"
+        color="#664400"
+        style=filled
+        fillcolor="#1a0e00"
+
+        vram_full [label="Full VRAM\n10,240 MiB GDDR6X\n~760 GB/s bandwidth" fillcolor="#442200" fontcolor="#ffcc88" shape=cylinder]
+
+        subgraph cluster_vram_access {
+            label=""
+            style=invis
+            vram_visible_old [label="Visible to CPU\n256 MiB\n(was here before)" fillcolor="#553300" fontcolor="#ff8844" shape=box style="filled,dashed"]
+            vram_visible_new [label="Visible to CPU\n8192 MiB\n(after ReBAR flash)" fillcolor="#335500" fontcolor="#88ff44" shape=box]
+        }
+
+        vram_full -> vram_visible_old [label="mapped\n(before)" color="#ff6600" style=dashed]
+        vram_full -> vram_visible_new [label="mapped\n(after)" color="#88cc00"]
+    }
+
+    // Flow
+    mmio -> pcie_bus [label="  Address mapped\n  through PCIe" color="#66aaff"]
+    pcie_bus -> bar_old [color="#ff6600" style=dashed label="BAR1\n256 MiB\n(before)"]
+    pcie_bus -> bar_new [color="#88cc00" label="BAR1\n8192 MiB\n(after)"]
+    bar_old -> vram_visible_old [color="#ff6600" style=dashed]
+    bar_new -> vram_visible_new [color="#88cc00"]
+
+    // Performance impact annotation
+    impact [label="Performance Impact:\n• Cross-GPU tensor copies: fewer PCIe round-trips\n• Ollama multi-GPU: better VRAM locality\n• CUDA P2P access: enabled with full BAR\n• Before: driver pages VRAM in 256 MiB chunks\n• After: entire model layer fits in BAR window"
+            fillcolor="#111122" fontcolor="#aaaacc" shape=note style=filled]
+    bar_new -> impact [style=invis]
+
+    // Requirements annotation
+    reqs [label="Prerequisites for ReBAR:\n1. UEFI boot (no CSM)\n2. Above 4G Decoding ON (BIOS)\n3. Re-Size BAR Support ON (BIOS)\n4. VBIOS with ReBAR capability bit set\n   → This is what the flash accomplishes\n5. kernel param: pci=realloc"
+          fillcolor="#111122" fontcolor="#aaaacc" shape=note style=filled]
+    bar_old -> reqs [style=invis]
+}

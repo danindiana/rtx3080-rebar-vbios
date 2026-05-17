@@ -1,0 +1,122 @@
+digraph service_dependency {
+    graph [
+        label="Service Shutdown / Restart Order\nGPU Handle Release for Safe VBIOS Flash"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        splines=ortho
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.6
+        nodesep=0.6
+        ranksep=0.7
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10]
+
+    // GPU device files
+    subgraph cluster_devices {
+        label="GPU Device Files"
+        fontcolor="#cccccc"
+        color="#333333"
+        style=filled
+        fillcolor="#111111"
+
+        dev_nvidiactl [label="/dev/nvidiactl\n(GPU control)" fillcolor="#222222" fontcolor="#cccccc"]
+        dev_nvidia0   [label="/dev/nvidia0\n(RTX 5080)" fillcolor="#222222" fontcolor="#cccccc"]
+        dev_nvidia1   [label="/dev/nvidia1\n(RTX 3080)" fillcolor="#222222" fontcolor="#cccccc"]
+        dev_uvm       [label="/dev/nvidia-uvm\n(unified memory)" fillcolor="#222222" fontcolor="#cccccc"]
+        dev_modeset   [label="/dev/nvidia-modeset\n(display)" fillcolor="#222222" fontcolor="#cccccc"]
+    }
+
+    // Kernel modules
+    subgraph cluster_modules {
+        label="NVIDIA Kernel Modules (must be rmmod'd for nvflash)"
+        fontcolor="#aaaaff"
+        color="#333366"
+        style=filled
+        fillcolor="#111133"
+
+        mod_uvm      [label="nvidia_uvm\n(CUDA unified memory)" fillcolor="#222255" fontcolor="#aaaaff"]
+        mod_drm      [label="nvidia_drm\n(DRM/KMS display)" fillcolor="#222255" fontcolor="#aaaaff"]
+        mod_modeset  [label="nvidia_modeset\n(modesetting)" fillcolor="#222255" fontcolor="#aaaaff"]
+        mod_nvidia   [label="nvidia\n(core driver)" fillcolor="#222255" fontcolor="#aaaaff"]
+    }
+
+    // Services that hold GPU handles
+    subgraph cluster_services {
+        label="Services Holding GPU Handles (SHUTDOWN ORDER →)"
+        fontcolor="#ffaa00"
+        color="#664400"
+        style=filled
+        fillcolor="#1a0e00"
+
+        ollama_svc [label="ollama.service\nHolds: /dev/nvidia0, nvidia1, nvidia-uvm\nAction: systemctl stop ollama" fillcolor="#442200" fontcolor="#ffcc66"]
+        watchdog_svc [label="gpu-watchdog.service\n(gpu_thermal.watchdog)\nRestart=always — must stop\nAction: systemctl stop + pkill -9" fillcolor="#442200" fontcolor="#ffcc66"]
+        persistenced_svc [label="nvidia-persistenced.service\n★ Holds handles even when idle ★\nHolds: nvidiactl, nvidia0, nvidia1,\nnvidia-modeset (all)\nAction: MASK first, then stop\n(mask prevents auto-restart)" fillcolor="#552200" fontcolor="#ffaa44" penwidth=3]
+    }
+
+    // Display tier
+    subgraph cluster_display {
+        label="Display Stack"
+        fontcolor="#aaaacc"
+        color="#333355"
+        style=filled
+        fillcolor="#111122"
+
+        xfce_terminal [label="xfce4-terminal\n(this session — WILL DIE\nwhen LightDM stops)" fillcolor="#222244" fontcolor="#aaaacc"]
+        lightdm_svc [label="lightdm.service\nX11 display manager\nAction: systemctl stop lightdm" fillcolor="#222244" fontcolor="#aaaacc"]
+        xorg [label="Xorg / X11 server\n(child of LightDM)" fillcolor="#222244" fontcolor="#aaaacc"]
+        xfce4_panel [label="xfce4-panel\n(Xfce compositor)" fillcolor="#222244" fontcolor="#aaaacc"]
+        xfce_terminal -> xfce4_panel [label="child of" color="#555577"]
+        xfce4_panel -> xorg [label="child of" color="#555577"]
+        xorg -> lightdm_svc [label="managed by" color="#555577"]
+    }
+
+    // Systemd one-shot (how flash is run safely)
+    subgraph cluster_systemd_run {
+        label="Safe Execution Context\n(survives X death)"
+        fontcolor="#88ffcc"
+        color="#226644"
+        style=filled
+        fillcolor="#002211"
+
+        systemd_run [label="systemd-run\n--unit=rebar-flash\nIndependent of X session\nOwned by PID 1 (systemd)" fillcolor="#004422" fontcolor="#88ffcc"]
+        rebar_sh [label="rebar-enable.sh\nRuns as root in service context\nLogs to flash-session.log" fillcolor="#003322" fontcolor="#88ffcc"]
+        nvflash_bin [label="nvflash 5.867.0\nLinux binary — reads /dev/nvidia*\ndirectly (needs modules unloaded)" fillcolor="#002211" fontcolor="#66aacc"]
+        systemd_run -> rebar_sh [color="#00aa66"]
+        rebar_sh -> nvflash_bin [color="#00aa66"]
+    }
+
+    // Module dependency chain (rmmod order)
+    mod_uvm -> mod_nvidia [label="depends on" color="#666699" style=dashed]
+    mod_drm -> mod_modeset [label="depends on" color="#666699" style=dashed]
+    mod_modeset -> mod_nvidia [label="depends on" color="#666699" style=dashed]
+
+    // Service → module dependencies
+    ollama_svc -> mod_uvm [label="uses" color="#996600" style=dotted]
+    ollama_svc -> mod_nvidia [label="uses" color="#996600" style=dotted]
+    persistenced_svc -> mod_nvidia [label="uses\n(all handles)" color="#cc4400" style=dotted penwidth=2]
+    persistenced_svc -> mod_modeset [label="uses" color="#cc4400" style=dotted]
+    lightdm_svc -> mod_drm [label="uses" color="#666699" style=dotted]
+    lightdm_svc -> mod_modeset [label="uses" color="#666699" style=dotted]
+
+    // Shutdown sequence labels
+    seq1 [label="① Stop Ollama" fillcolor="#331100" fontcolor="#ff9944" shape=plaintext]
+    seq2 [label="② Stop gpu-watchdog" fillcolor="#331100" fontcolor="#ff9944" shape=plaintext]
+    seq3 [label="③ MASK + Stop nvidia-persistenced" fillcolor="#331100" fontcolor="#ff9944" shape=plaintext]
+    seq4 [label="④ fuser -k /dev/nvidia*" fillcolor="#331100" fontcolor="#ff9944" shape=plaintext]
+    seq5 [label="⑤ Stop LightDM (X dies here)" fillcolor="#331100" fontcolor="#ff9944" shape=plaintext]
+    seq6 [label="⑥ modprobe -r nvidia_uvm\n    modprobe -r nvidia_drm\n    modprobe -r nvidia_modeset\n    modprobe -r nvidia" fillcolor="#331100" fontcolor="#ff9944" shape=plaintext]
+    seq7 [label="⑦ nvflash flashes EEPROM" fillcolor="#220022" fontcolor="#ff88ff" shape=plaintext]
+
+    seq1 -> seq2 -> seq3 -> seq4 -> seq5 -> seq6 -> seq7 [color="#ff9944" style=bold]
+
+    // Device file usage
+    persistenced_svc -> dev_nvidiactl [color="#cc4400" style=dotted]
+    persistenced_svc -> dev_nvidia0 [color="#cc4400" style=dotted]
+    persistenced_svc -> dev_nvidia1 [color="#cc4400" style=dotted]
+    persistenced_svc -> dev_modeset [color="#cc4400" style=dotted]
+    nvflash_bin -> dev_nvidia1 [label="flash target\n(GPU 1 = RTX 3080)" color="#00aaff" penwidth=2]
+}

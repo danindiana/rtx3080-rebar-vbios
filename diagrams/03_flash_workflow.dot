@@ -1,0 +1,112 @@
+digraph flash_workflow {
+    graph [
+        label="rebar-enable.sh — VBIOS Flash Workflow\nRTX 3080 ReBAR Enable (AS02 ROM)"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        splines=ortho
+        bgcolor="#0d1117"
+        fontcolor=white
+        pad=0.6
+        nodesep=0.5
+        ranksep=0.6
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10 color="#aaaaaa"]
+
+    // Start
+    start [label="START\nsudo ~/vbios-work/rebar-enable.sh" fillcolor="#003366" fontcolor=white shape=oval]
+
+    // Validation
+    check_root [label="Check: running as root?" fillcolor="#1a1a3a" fontcolor=white shape=diamond]
+    check_nvflash [label="Check: nvflash binary\nexists + executable?" fillcolor="#1a1a3a" fontcolor=white shape=diamond]
+    check_rom [label="Check: ROM file\nexists?" fillcolor="#1a1a3a" fontcolor=white shape=diamond]
+
+    // Step 0
+    step0 [label="[0] Stop GPU Consumers\n• ollama.service → systemctl stop\n• gpu-watchdog → stop + pkill -9\n• nvidia-persistenced → mask + stop\n• fuser -k /dev/nvidia*\n• Wait up to 30s for handles to release" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 1
+    step1 [label="[1] Stop LightDM\nsystemctl stop lightdm\nX session terminates here\n(sleep 4s)" fillcolor="#2a1a00" fontcolor=white]
+
+    // Step 2
+    step2 [label="[2] Unload NVIDIA Modules\nmodprobe -r nvidia_uvm\nmodprobe -r nvidia_drm\nmodprobe -r nvidia_modeset\nmodprobe -r nvidia" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Check modules
+    check_modules [label="Modules still\nloaded?" fillcolor="#1a1a3a" fontcolor=white shape=diamond]
+
+    // Step 3
+    step3 [label="[3] nvflash --list\nVerify GPU 1 (RTX 3080)\nvisible without driver" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 4
+    step4 [label="[4] Backup Current VBIOS\nnvflash -i 1 --save backup.rom\n(skipped if backup already exists)\n~999 KB saved" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 5
+    step5 [label="[5] Check ROM Compatibility\nnvflash -i 1 --check AS02.rom\nExpect subsystem 1043:87B0 match\n(proceed regardless of exit code)" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 5b
+    step5b [label="[5b] Write-Protect Off\nnvflash -i 1 --protectoff\n(via expect, TTY-driven)" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 6
+    step6 [label="[6] FLASH ROM\nnvflash -i 1 94.02.42.40.AS02.rom\nexpect drives y/n prompt\n~30 seconds, 100% progress bar\nEEPROM write cycle" fillcolor="#220033" fontcolor="#ff99ff" penwidth=3]
+
+    // Step 7
+    step7 [label="[7] Read-Back Verify\nnvflash -i 1 --save /tmp/verify.rom\nConfirm non-empty (999 KB)" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 8
+    step8 [label="[8] Reload NVIDIA Modules\nmodprobe nvidia\nmodprobe nvidia_modeset\nmodprobe nvidia_drm\nmodprobe nvidia_uvm" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 9
+    step9 [label="[9] Restore Services\nsystemctl unmask nvidia-persistenced\nsystemctl start nvidia-persistenced\nsystemctl start gpu-watchdog" fillcolor="#1a2a1a" fontcolor=white]
+
+    // Step 10
+    step10 [label="[10] Restart LightDM\nsystemctl start lightdm\nX session returns\n(sleep 3s)" fillcolor="#2a1a00" fontcolor=white]
+
+    // Result check
+    check_flash [label="FLASH_STATUS\n== 0?" fillcolor="#1a1a3a" fontcolor=white shape=diamond]
+
+    // Success
+    success [label="SUCCESS\nVBIOS updated: .65 → .66\nAS03 → AS02\nREBOOT REQUIRED\nfor BAR1 expansion\nto take effect" fillcolor="#003300" fontcolor="#00ff88" shape=box penwidth=3]
+
+    // Failure
+    failure [label="FAILED\nnvflash non-zero exit\nVBIOS NOT changed\nBackup safe at:\n3080-backup-pre-rebar.rom" fillcolor="#330000" fontcolor="#ff4444" shape=box penwidth=3]
+
+    // Abort node
+    abort [label="ABORT\nRestore modules\nUnmask nvidia-persistenced\nStart gpu-watchdog\nRestart lightdm\nExit 1" fillcolor="#331100" fontcolor="#ff6600" shape=box]
+
+    // Verify post-reboot
+    verify [label="Post-Reboot Verification\nnvidia-smi -q -i 1 | grep BAR1\nlspci -vvv -s 0f:00.0 | grep Resizable BAR\nExpected: 8192 MiB" fillcolor="#002244" fontcolor="#66aaff" shape=box style="filled,dashed"]
+
+    // Flow
+    start -> check_root
+    check_root -> check_nvflash [label="yes"]
+    check_root -> abort [label="no" color="#ff4444"]
+
+    check_nvflash -> check_rom [label="yes"]
+    check_nvflash -> abort [label="no" color="#ff4444"]
+
+    check_rom -> step0 [label="yes"]
+    check_rom -> abort [label="no" color="#ff4444"]
+
+    step0 -> step1
+    step1 -> step2
+    step2 -> check_modules
+
+    check_modules -> abort [label="yes\n(still loaded)" color="#ff4444"]
+    check_modules -> step3 [label="no\n(unloaded OK)"]
+
+    step3 -> step4
+    step4 -> step5
+    step5 -> step5b
+    step5b -> step6
+    step6 -> step7
+    step7 -> step8
+    step8 -> step9
+    step9 -> step10
+    step10 -> check_flash
+
+    check_flash -> success [label="yes (0)" color="#00cc66"]
+    check_flash -> failure [label="no (non-zero)" color="#ff4444"]
+
+    success -> verify [label="reboot, then run\nvbios-verify.sh" color="#00aa55" style=dashed]
+}

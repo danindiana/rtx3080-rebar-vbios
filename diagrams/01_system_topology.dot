@@ -1,0 +1,100 @@
+digraph system_topology {
+    graph [
+        label="worlock — Dual-GPU System Topology\n(RTX 5080 + RTX 3080, ReBAR flash target)"
+        labelloc=t
+        fontname="Helvetica"
+        fontsize=16
+        rankdir=TB
+        splines=ortho
+        bgcolor="#1a1a2e"
+        fontcolor=white
+        pad=0.5
+    ]
+    node [fontname="Helvetica" fontsize=11 style=filled shape=box]
+    edge [fontname="Helvetica" fontsize=10 color="#aaaaaa"]
+
+    // CPU / Memory tier
+    subgraph cluster_cpu {
+        label="Host System"
+        fontcolor=white
+        color="#334466"
+        style=filled
+        fillcolor="#16213e"
+
+        cpu [label="AMD Ryzen 9 5950X\n32 threads" fillcolor="#2e4a7a" fontcolor=white]
+        ram [label="128 GB DDR4" fillcolor="#2e4a7a" fontcolor=white]
+        cpu -> ram [style=invis]
+    }
+
+    // Motherboard / PCIe fabric
+    subgraph cluster_mb {
+        label="ASRock X570 Taichi\n(PCIe Gen 4, Above-4G Decoding ON, CSM OFF)"
+        fontcolor=white
+        color="#445522"
+        style=filled
+        fillcolor="#1a2e0f"
+
+        pcie_root [label="PCIe Root Complex\n(AMD X570)" fillcolor="#3a5a1a" fontcolor=white shape=diamond]
+        slot_0e [label="PCIe x16 — slot 0E:00.0" fillcolor="#2a3a10" fontcolor="#cccccc" shape=plaintext]
+        slot_0f [label="PCIe x16 — slot 0F:00.0" fillcolor="#2a3a10" fontcolor="#cccccc" shape=plaintext]
+    }
+
+    // GPU 0 — RTX 5080
+    subgraph cluster_gpu0 {
+        label="GPU 0 — RTX 5080  [ReBAR ENABLED ✓]"
+        fontcolor="#00ff88"
+        color="#006644"
+        style=filled
+        fillcolor="#002211"
+
+        rtx5080 [label="NVIDIA RTX 5080\n10DE:2C02\n16 GB GDDR7" fillcolor="#004422" fontcolor="#00ff88" shape=box3d]
+        bar1_5080 [label="BAR1 Window\n16384 MiB (16 GB)\nFull VRAM exposed" fillcolor="#005533" fontcolor="#88ffcc"]
+        vram5080 [label="VRAM\n16 GB" fillcolor="#003322" fontcolor="#aaffcc"]
+        rtx5080 -> bar1_5080 [label="PCIe BAR1" color="#00aa66"]
+        bar1_5080 -> vram5080 [color="#009955"]
+    }
+
+    // GPU 1 — RTX 3080 (target)
+    subgraph cluster_gpu1 {
+        label="GPU 1 — RTX 3080  [ReBAR DISABLED → TARGET]"
+        fontcolor="#ffaa00"
+        color="#664400"
+        style=filled
+        fillcolor="#221100"
+
+        rtx3080 [label="NVIDIA RTX 3080\n10DE:2206 / 1043:87B0\nTUF-RTX3080-O10G-GAMING\n10 GB GDDR6X" fillcolor="#442200" fontcolor="#ffaa00" shape=box3d]
+        bar1_3080_old [label="BAR1 Window\n256 MiB (BEFORE)\n⚠ Only 2.5% of VRAM\nexposed to CPU" fillcolor="#553300" fontcolor="#ffcc66"]
+        bar1_3080_new [label="BAR1 Window\n8192 MiB (AFTER FLASH)\n✓ Full VRAM window\n(post-reboot)" fillcolor="#334400" fontcolor="#aaff66" style="filled,dashed"]
+        vram3080 [label="VRAM\n10 GB" fillcolor="#331100" fontcolor="#ffbbaa"]
+        rtx3080 -> bar1_3080_old [label="Before flash" color="#ff6600" style=dashed]
+        rtx3080 -> bar1_3080_new [label="After flash\n+ reboot" color="#88cc00"]
+        bar1_3080_old -> vram3080 [color="#cc4400" style=dashed]
+        bar1_3080_new -> vram3080 [color="#88cc00"]
+    }
+
+    // OS / Driver tier
+    subgraph cluster_os {
+        label="OS Layer"
+        fontcolor=white
+        color="#333366"
+        style=filled
+        fillcolor="#111133"
+
+        kernel [label="Linux 6.8.12\nXubuntu 22.04.5 LTS" fillcolor="#222244" fontcolor=white]
+        driver [label="NVIDIA Driver 580.142\nCUDA 13.0" fillcolor="#222244" fontcolor=white]
+        ollama [label="Ollama Inference\nCUDA_VISIBLE_DEVICES=0,1\nBoth GPUs" fillcolor="#333355" fontcolor="#aaaaff"]
+        lightdm [label="LightDM\nDisplay Manager" fillcolor="#222244" fontcolor=white]
+    }
+
+    // Connections
+    cpu -> pcie_root [label="PCIe Gen 4" color="#aaaaaa"]
+    pcie_root -> slot_0e [color="#aaaaaa"]
+    pcie_root -> slot_0f [color="#aaaaaa"]
+    slot_0e -> rtx5080 [color="#00aa66"]
+    slot_0f -> rtx3080 [color="#ffaa00"]
+    kernel -> driver [color="#aaaaaa"]
+    driver -> ollama [color="#aaaaaa"]
+    driver -> lightdm [color="#aaaaaa"]
+    driver -> rtx5080 [color="#aaaaaa" style=dotted]
+    driver -> rtx3080 [color="#aaaaaa" style=dotted]
+}
